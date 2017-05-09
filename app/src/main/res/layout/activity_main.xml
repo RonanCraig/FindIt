@@ -10,8 +10,35 @@
         android:id="@+id/cinema_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="showCinimas"
+        android:onClick="showMap"
         android:text="Cinema"
+        tools:layout_editor_absoluteX="75dp"
+        tools:layout_editor_absoluteY="183dp" />
+
+    <Button
+        android:id="@+id/restaurant_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="showMap"
+        android:text="Restaurant"
+        tools:layout_editor_absoluteX="75dp"
+        tools:layout_editor_absoluteY="183dp" />
+
+    <Button
+        android:id="@+id/carpark_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="showMap"
+        android:text="Car Park"
+        tools:layout_editor_absoluteX="75dp"
+        tools:layout_editor_absoluteY="183dp" />
+
+    <Button
+        android:id="@+id/park_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="showMap"
+        android:text="Park"
         tools:layout_editor_absoluteX="75dp"
         tools:layout_editor_absoluteY="183dp" />
 
