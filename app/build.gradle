@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-//helllow orld
+//hello world
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.3"
