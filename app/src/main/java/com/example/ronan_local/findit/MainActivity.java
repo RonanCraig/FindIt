@@ -26,25 +26,25 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(android.content.Intent.ACTION_VIEW);
         if(view.getId() == R.id.cinema_btn)
         {
-            //intent.setData(Uri.parse("google.navigation:q=cinema"));
+            intent.setData(Uri.parse("google.navigation:q=cinema"));
             //intent.setData(Uri.parse("http://maps.google.com/maps?saddr=20.344,34.34&daddr=20.5666,45.345"));
         }
         else if(view.getId() == R.id.restaurant_btn)
         {
-            //intent.setData(Uri.parse("google.navigation:q=restaurant"));
+            intent.setData(Uri.parse("google.navigation:q=restaurant"));
             //intent.setData(Uri.parse("http://maps.google.com/maps?saddr=20.344,34.34&daddr=20.5666,45.345"));
         }
         else if(view.getId() == R.id.carpark_btn)
         {
-            //intent.setData(Uri.parse("google.navigation:q=carpark"));
+            intent.setData(Uri.parse("google.navigation:q=carpark"));
             //intent.setData(Uri.parse("http://maps.google.com/maps?saddr=20.344,34.34&daddr=20.5666,45.345"));
         }
         else if(view.getId() == R.id.park_btn)
         {
-            //intent.setData(Uri.parse("google.navigation:q=park"));
+            intent.setData(Uri.parse("google.navigation:q=park"));
             //intent.setData(Uri.parse("http://maps.google.com/maps?saddr=20.344,34.34&daddr=20.5666,45.345"));
         }
-        intent.setData(Uri.parse("google.navigation:"));
+        //intent.setData(Uri.parse("google.navigation:"));
         startActivity(intent);
     }
 }
