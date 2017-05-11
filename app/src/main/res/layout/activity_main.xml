@@ -19,10 +19,11 @@
         app:layout_constraintLeft_toLeftOf="parent" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/cinemaImageButton"
         android:background="@null"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="showMap"
         android:layout_marginLeft="86dp"
         android:layout_marginTop="177dp"
         android:contentDescription="@null"
