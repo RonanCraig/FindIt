@@ -20,10 +20,11 @@
 
     <ImageButton
         android:id="@+id/imageButton"
+        android:background="@null"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="74dp"
-        android:layout_marginTop="167dp"
+        android:layout_marginLeft="86dp"
+        android:layout_marginTop="177dp"
         android:contentDescription="@null"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
