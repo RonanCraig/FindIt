@@ -26,11 +26,11 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MapsActivity.class);
         if(view.getId() == R.id.cinema_btn)
         {
-            intent.putExtra("typesToSearch","cinema");
+            intent.putExtra("typesToSearch","movie_theater");
         }
         else if(view.getId() == R.id.restaurant_btn)
         {
-            intent.putExtra("typesToSearch","restaurant");
+            intent.putExtra("typesToSearch","restaurant|cafe|meal_takeaway");
         }
         else if(view.getId() == R.id.carpark_btn)
         {
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         }
         else if(view.getId() == R.id.park_btn)
         {
-            intent.putExtra("typesToSearch","restaurant|cafe|meal_takeaway");
+            intent.putExtra("typesToSearch","park");
         }
         startActivity(intent);
     }
