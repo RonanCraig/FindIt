@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.ronan_local.findit.MainActivity">
+    tools:context="com.example.ronan_local.findit.MainActivity"
+    android:background="@drawable/background">
 
     <Button
         android:id="@+id/cinema_btn"
@@ -12,7 +13,15 @@
         android:layout_height="wrap_content"
         android:onClick="showCinimas"
         android:text="Cinema"
-        tools:layout_editor_absoluteX="75dp"
-        tools:layout_editor_absoluteY="183dp" />
+        tools:layout_editor_absoluteX="100dp"
+        tools:layout_editor_absoluteY="107dp" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/iconcinema"
+        tools:layout_editor_absoluteX="74dp"
+        tools:layout_editor_absoluteY="207dp" />
 
 </android.support.constraint.ConstraintLayout>
