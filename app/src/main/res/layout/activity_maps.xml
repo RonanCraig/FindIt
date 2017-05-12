@@ -1,8 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.ronan_local.findit.MapsActivity"
+    android:background="@drawable/background">
+
 <fragment xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:map="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/map"
     android:name="com.google.android.gms.maps.SupportMapFragment"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="200dp"
+    android:layout_marginTop="220dp"
+    android:layout_marginRight="18dp"
+    android:layout_marginLeft="18dp"
     tools:context="com.example.ronan_local.findit.MapsActivity" />
+
+    <Button
+        android:id="@+id/nextLocationButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/map"
+        android:layout_alignStart="@+id/map"
+        android:layout_below="@+id/map"
+        android:layout_marginLeft="67dp"
+        android:layout_marginStart="67dp"
+        android:layout_marginTop="19dp"
+        android:onClick="nextLocationButtonClick"
+        android:text="Next" />
+
+    <Button
+        android:id="@+id/showAllButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/nextLocationButton"
+        android:layout_marginLeft="47dp"
+        android:layout_marginStart="47dp"
+        android:layout_toEndOf="@+id/nextLocationButton"
+        android:layout_toRightOf="@+id/nextLocationButton"
+        android:onClick="showAllButtonClick"
+        android:text="Show All" />
+
+</RelativeLayout>

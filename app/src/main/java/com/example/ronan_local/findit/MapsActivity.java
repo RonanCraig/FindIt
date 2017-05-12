@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -48,8 +49,7 @@ public class MapsActivity extends AppCompatActivity
     LocationRequest mLocationRequest;
     GoogleApiClient mGoogleApiClient;
     Location mLastLocation;
-    Marker mCurrLocationMarker;
-    boolean firstRun = true;
+    sortedLocationsManager locationManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +58,7 @@ public class MapsActivity extends AppCompatActivity
 
         mapFrag = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFrag.getMapAsync(this);
+        getSupportActionBar().hide();
     }
 
     @Override
@@ -84,7 +85,8 @@ public class MapsActivity extends AppCompatActivity
             return;
         }
         mGoogleMap.setMyLocationEnabled(true);
-        mGoogleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+        mGoogleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+        //mGoogleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
 
         //Initialize Google Play Services
         buildGoogleApiClient();
@@ -99,6 +101,7 @@ public class MapsActivity extends AppCompatActivity
         StringBuilder sb = new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
         sb.append("location=" + mLatitude + "," + mLongitude);
         sb.append("&radius=5000");
+        //sb.append("&rankBy=distance");
         String typesToSearch = getIntent().getStringExtra("typesToSearch");
         sb.append("&types=" + typesToSearch);
         sb.append("&sensor=true");
@@ -135,6 +138,11 @@ public class MapsActivity extends AppCompatActivity
             return;
         }
         LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
+        mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
+                mGoogleApiClient);
+        StringBuilder sbValue = new StringBuilder(sbMethod(mLastLocation));
+        PlacesTask placesTask = new PlacesTask();
+        placesTask.execute(sbValue.toString());
     }
 
     @Override
@@ -146,27 +154,10 @@ public class MapsActivity extends AppCompatActivity
     @Override
     public void onLocationChanged(Location location)
     {
-        mLastLocation = location;
-        if (mCurrLocationMarker != null) {
-            mCurrLocationMarker.remove();
-        }
-
-        //Place current location marker
-        LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-        MarkerOptions markerOptions = new MarkerOptions();
-        markerOptions.position(latLng);
-        markerOptions.title("Current Position");
-        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
-        mCurrLocationMarker = mGoogleMap.addMarker(markerOptions);
-
         //move map camera
+        LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
         mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-        mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(11));
-
-        //query places with current location
-        StringBuilder sbValue = new StringBuilder(sbMethod(location));
-        PlacesTask placesTask = new PlacesTask();
-        placesTask.execute(sbValue.toString());
+        mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(13));
 
         if (mGoogleApiClient != null) {
             LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
@@ -240,47 +231,79 @@ public class MapsActivity extends AppCompatActivity
         return data;
     }
 
-    private class ParserTask extends AsyncTask<String, Integer, List<HashMap<String, String>>> {
+    public void nextLocationButtonClick(View view)
+    {
+        locationManager.showNextLocation();
+    }
 
-        JSONObject jObject;
+    public void showAllButtonClick(View view)
+    {
+        locationManager.showAllLocations();
+    }
 
-        // Invoked by execute() method of this object
-        @Override
-        protected List<HashMap<String, String>> doInBackground(String... jsonData) {
+    private class sortedLocationsManager
+    {
+        private int nextPositionInList = 0;
+        private List<HashMap<String, String>> sortedLocationsList;
 
-            List<HashMap<String, String>> places = null;
-            Place_JSON placeJson = new Place_JSON();
-
-            try {
-                jObject = new JSONObject(jsonData[0]);
-
-                places = placeJson.parse(jObject);
-
-            } catch (Exception e) {
-                Log.d("Exception", e.toString());
-            }
-            return places;
+        sortedLocationsManager(List<HashMap<String, String>> sortedLocations)
+        {
+            sortedLocationsList = sortedLocations;
         }
 
-        // Executed after the complete execution of doInBackground() method
-        @Override
-        protected void onPostExecute(List<HashMap<String, String>> list) {
-
-            Log.d("Map", "list size: " + list.size());
-            // Clears all the existing markers;
-            if (!firstRun) {
-
-                mGoogleMap.clear();
+        private void showNextLocation()
+        {
+            mGoogleMap.clear();
+            if(nextPositionInList == sortedLocationsList.size())
+            {
+                nextPositionInList = 0;
             }
-            firstRun = false;
+            // Creating a marker
+            MarkerOptions markerOptions = new MarkerOptions();
 
-            for (int i = 0; i < list.size(); i++) {
+            // Getting a place from the places list
+            HashMap<String, String> hmPlace = sortedLocationsList.get(nextPositionInList);
 
+
+            // Getting latitude of the place
+            double lat = Double.parseDouble(hmPlace.get("lat"));
+
+            // Getting longitude of the place
+            double lng = Double.parseDouble(hmPlace.get("lng"));
+
+            // Getting name
+            String name = hmPlace.get("place_name");
+
+            Log.d("Map", "place: " + name);
+
+            // Getting vicinity
+            String vicinity = hmPlace.get("vicinity");
+
+            LatLng latLng = new LatLng(lat, lng);
+
+            // Setting the position for the marker
+            markerOptions.position(latLng);
+
+            markerOptions.title(name + " : " + vicinity);
+
+            markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
+
+            // Placing a marker on the touched position
+            Marker m = mGoogleMap.addMarker(markerOptions);
+
+            nextPositionInList++;
+        }
+
+        private void showAllLocations()
+        {
+            mGoogleMap.clear();
+
+            for(int i = 0; i < sortedLocationsList.size(); i++) {
                 // Creating a marker
                 MarkerOptions markerOptions = new MarkerOptions();
 
                 // Getting a place from the places list
-                HashMap<String, String> hmPlace = list.get(i);
+                HashMap<String, String> hmPlace = sortedLocationsList.get(i);
 
 
                 // Getting latitude of the place
@@ -308,8 +331,80 @@ public class MapsActivity extends AppCompatActivity
 
                 // Placing a marker on the touched position
                 Marker m = mGoogleMap.addMarker(markerOptions);
-
             }
+        }
+
+    }
+
+    private class ParserTask extends AsyncTask<String, Integer, List<HashMap<String, String>>> {
+
+        JSONObject jObject;
+
+        // Invoked by execute() method of this object
+        @Override
+        protected List<HashMap<String, String>> doInBackground(String... jsonData) {
+
+            List<HashMap<String, String>> places = null;
+            Place_JSON placeJson = new Place_JSON();
+
+            try {
+                jObject = new JSONObject(jsonData[0]);
+
+                places = placeJson.parse(jObject);
+
+            } catch (Exception e) {
+                Log.d("Exception", e.toString());
+            }
+            return places;
+        }
+
+        // Executed after the complete execution of doInBackground() method
+        @Override
+        protected void onPostExecute(List<HashMap<String, String>> list) {
+
+            Log.d("Map", "list size: " + list.size());
+
+            List<HashMap<String, String>> sortedList = list;
+            Location currentPosition = mLastLocation;
+
+            for (int y = 0; y < sortedList.size(); y++) {
+
+                int posToSwap = y;
+
+                for (int x = y; x < sortedList.size(); x++) {
+
+                    HashMap<String, String> currentPlace = sortedList.get(posToSwap);
+                    HashMap<String, String> toComparePlace = sortedList.get(x);
+
+                    Location loc1 = new Location("");
+                    loc1.setLatitude(Double.parseDouble(currentPlace.get("lat")));
+                    loc1.setLongitude(Double.parseDouble(currentPlace.get("lng")));
+
+                    Location loc2 = new Location("");
+                    loc2.setLatitude(Double.parseDouble(toComparePlace.get("lat")));
+                    loc2.setLongitude(Double.parseDouble(toComparePlace.get("lng")));
+
+                    float dist1 = currentPosition.distanceTo(loc1);
+                    float dist2 = currentPosition.distanceTo(loc2);
+
+                    Log.d("Dist1", "Dist1: " + dist1);
+                    Log.d("Dist2", "Dist2: " + dist2);
+
+                    if(dist2 < dist1)
+                    {
+                        posToSwap = x;
+                    }
+                }
+                if(posToSwap != y)
+                {
+                    HashMap<String, String> temp = sortedList.get(y);
+                    sortedList.set(y, sortedList.get(posToSwap));
+                    sortedList.set(posToSwap, temp);
+                }
+            }
+
+            locationManager = new sortedLocationsManager(sortedList);
+            locationManager.showNextLocation();
         }
     }
     public class Place_JSON {
