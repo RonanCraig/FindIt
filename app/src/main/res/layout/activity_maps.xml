@@ -14,7 +14,7 @@
     android:name="com.google.android.gms.maps.SupportMapFragment"
     android:layout_width="match_parent"
     android:layout_height="200dp"
-    android:layout_marginTop="220dp"
+    android:layout_marginTop="200dp"
     android:layout_marginRight="18dp"
     android:layout_marginLeft="18dp"
     tools:context="com.example.ronan_local.findit.MapsActivity" />
@@ -43,5 +43,31 @@
         android:layout_toRightOf="@+id/nextLocationButton"
         android:onClick="showAllButtonClick"
         android:text="Show All" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="180dp"
+        android:layout_height="70dp"
+        android:background="@null"
+        android:contentDescription="@null"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/nextbutton"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp" />
+
+    <ImageButton
+        android:id="@+id/imageButton3"
+        android:onClick="showAllButtonClick"
+        android:layout_width="180dp"
+        android:layout_height="70dp"
+        android:background="@null"
+        android:contentDescription="@null"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/showallbutton"
+        android:layout_below="@+id/nextLocationButton"
+        android:layout_alignLeft="@+id/imageButton"
+        android:layout_alignStart="@+id/imageButton"
+        android:layout_marginTop="14dp" />
 
 </RelativeLayout>
