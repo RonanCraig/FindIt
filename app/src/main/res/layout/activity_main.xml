@@ -11,7 +11,7 @@
         android:id="@+id/cinema_btn"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_marginTop="85dp"
+        android:layout_marginTop="117dp"
         android:background="@null"
         android:contentDescription="@null"
         android:onClick="showMap"
@@ -82,5 +82,32 @@
         tools:layout_constraintBottom_creator="1"
         tools:layout_constraintLeft_creator="1"
         app:layout_constraintVertical_bias="0.568" />
+
+    <ImageButton
+        android:id="@+id/friends_btn"
+        android:layout_width="191dp"
+        android:layout_height="67dp"
+        android:layout_marginBottom="16dp"
+        android:background="@null"
+        android:contentDescription="@null"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:srcCompat="@drawable/friendsbutton"
+        app:layout_constraintHorizontal_bias="0.502" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@null"
+        android:contentDescription="@null"
+        android:scaleType="fitCenter"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/iconsettings" />
 
 </android.support.constraint.ConstraintLayout>
