@@ -40,8 +40,7 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/prompt_email"
                     android:inputType="textEmailAddress"
-                    android:maxLines="1"
-                    android:singleLine="true" />
+                    android:maxLines="1" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -58,8 +57,7 @@
                     android:imeActionLabel="@string/action_sign_in_short"
                     android:imeOptions="actionUnspecified"
                     android:inputType="textPassword"
-                    android:maxLines="1"
-                    android:singleLine="true" />
+                    android:maxLines="1" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -69,17 +67,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Sign In"
+                android:text="@string/action_sign_in_short"
                 android:textStyle="bold" />
             <!-- Link to Registration Screen -->
             <TextView android:id="@+id/link_to_register"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dip"
-                android:layout_marginBottom="20dip"
-                android:text="New to FindIt? Register here"
+                android:layout_marginTop="20sp"
+                android:layout_marginBottom="20sp"
+                android:text="@string/btn_link_to_register"
                 android:gravity="center"
-                android:textSize="14dip"
+                android:textSize="14sp"
                 android:textColor="#0b84aa"/>
 
         </LinearLayout>

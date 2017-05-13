@@ -35,25 +35,9 @@
             <LinearLayout android:id="@+id/header"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:background="@layout/header_gradient"
-                android:paddingTop="5dip"
-                android:paddingBottom="5dip">
-                <!-- Logo Start-->
-                <ImageView android:src="@drawable/logo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dip"/>
-                <!-- Logo Ends -->
-            </LinearLayout>
-            <!--  Header Ends -->
-            <!-- Footer Start -->
-            <LinearLayout android:id="@+id/footer"
-                android:layout_width="fill_parent"
-                android:layout_height="90dip"
-                android:background="@layout/footer_repeat"
-                android:layout_alignParentBottom="true">
-            </LinearLayout>
-            <!-- Footer Ends -->
+                android:paddingTop="5sp"
+                android:paddingBottom="5sp"
+                android:orientation="vertical"/>
 
             <!-- Registration Form -->
             <LinearLayout
@@ -61,61 +45,63 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dip"
+                android:padding="10sp"
                 android:layout_below="@id/header">
                 <!-- Full Name Label -->
                 <TextView android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:textColor="#372c24"
-                    android:text="Full Name"/>
-                <EditText android:id="@+id/reg_fullname"
+                    android:text="@string/prompt_name"/>
+                <EditText android:id="@+id/reg_username"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dip"
-                    android:singleLine="true"
-                    android:layout_marginBottom="20dip"/>
+                    android:layout_marginTop="5sp"
+                    android:layout_marginBottom="20sp"
+                    android:maxLines="1"
+                    android:inputType="textPersonName" />
                 <!--  Email Label -->
                 <TextView android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:textColor="#372c24"
-                    android:text="Email"/>
+                    android:text="@string/prompt_email"/>
                 <EditText android:id="@+id/reg_email"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dip"
-                    android:singleLine="true"
-                    android:layout_marginBottom="20dip"/>
+                    android:layout_marginTop="5sp"
+                    android:layout_marginBottom="20sp"
+                    android:maxLines="1"
+                    android:inputType="textEmailAddress" />
                 <!-- Password Label -->
                 <TextView android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:textColor="#372c24"
-                    android:text="Password"/>
+                    android:text="@string/prompt_password"/>
                 <EditText android:id="@+id/reg_password"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:password="true"
-                    android:singleLine="true"
-                    android:layout_marginTop="5dip"/>
+                    android:layout_marginTop="5sp"
+                    android:maxLines="1"
+                    android:inputType="textPassword"/>
                 <!-- Register Button -->
                 <Button android:id="@+id/btnRegister"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dip"
-                    android:text="Register New Account"/>
+                    android:layout_marginTop="10sp"
+                    android:text="@string/btn_register"/>
                 <!-- Link to Login Screen -->
                 <TextView android:id="@+id/link_to_login"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="40dip"
-                    android:layout_marginBottom="40dip"
-                    android:text="Already has account! Login here"
+                    android:layout_marginTop="40sp"
+                    android:layout_marginBottom="40sp"
+                    android:text="@string/btn_link_to_login"
                     android:gravity="center"
-                    android:textSize="20dip"
+                    android:textSize="20sp"
                     android:textColor="#025f7c"/>
 
             </LinearLayout>
             <!-- Registration Form Ends -->
         </RelativeLayout>
-    </ScrollView>s
+    </ScrollView>
 
 </android.support.design.widget.CoordinatorLayout>
