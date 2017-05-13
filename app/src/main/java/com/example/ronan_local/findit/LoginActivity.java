@@ -1,11 +1,5 @@
 package com.example.ronan_local.findit;
 
-/**
- * Author: Ravi Tamada
- * URL: www.androidhive.info
- * twitter: http://twitter.com/ravitamada
- */
-
 import app.AppController;
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -15,7 +9,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request.Method;
@@ -35,8 +28,6 @@ import helper.SessionManager;
 
 public class LoginActivity extends Activity {
     private static final String TAG = RegisterActivity.class.getSimpleName();
-    private Button btnLogin;
-    private Button btnLinkToRegister;
     private EditText inputEmail;
     private EditText inputPassword;
     private ProgressDialog pDialog;
@@ -50,8 +41,8 @@ public class LoginActivity extends Activity {
 
         inputEmail = (EditText) findViewById(R.id.email);
         inputPassword = (EditText) findViewById(R.id.password);
-        btnLogin = (Button) findViewById(R.id.btnLogin);
-        btnLinkToRegister = (Button) findViewById(R.id.btnLinkToRegisterScreen);
+        Button btnLogin = (Button) findViewById(R.id.btnLogin);
+        Button btnLinkToRegister = (Button) findViewById(R.id.btnLinkToRegisterScreen);
 
         // Progress dialog
         pDialog = new ProgressDialog(this);
@@ -172,7 +163,7 @@ public class LoginActivity extends Activity {
             @Override
             protected Map<String, String> getParams() {
                 // Posting parameters to login url
-                Map<String, String> params = new HashMap<String, String>();
+                Map<String, String> params = new HashMap<>();
                 params.put("email", email);
                 params.put("password", password);
 

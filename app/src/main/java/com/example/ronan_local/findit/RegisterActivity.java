@@ -1,10 +1,7 @@
 package com.example.ronan_local.findit;
 
 import android.support.v7.app.AppCompatActivity;
-import android.widget.TextView;
 
-
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,44 +21,14 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import info.androidhive.loginandregistration.R;
-import info.androidhive.loginandregistration.app.AppConfig;
-import info.androidhive.loginandregistration.app.AppController;
-import info.androidhive.loginandregistration.helper.SQLiteHandler;
-import info.androidhive.loginandregistration.helper.SessionManager;
+import app.AppConfig;
+import app.AppController;
+import helper.SQLiteHandler;
+import helper.SessionManager;
 
 public class RegisterActivity extends AppCompatActivity {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
-
-        TextView loginScreen = (TextView) findViewById(R.id.link_to_login);
-
-        // Listening to Login Screen link
-        loginScreen.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View arg0) {
-                // Closing registration screen
-                // Switching to Login Screen/closing register screen
-                finish();
-            }
-        });
-    }
-
-}
-
-public class RegisterActivity extends Activity {
     private static final String TAG = RegisterActivity.class.getSimpleName();
-    private Button btnRegister;
-    private Button btnLinkToLogin;
-    private EditText inputFullName;
-    private EditText inputEmail;
-    private EditText inputPassword;
     private ProgressDialog pDialog;
-    private SessionManager session;
     private SQLiteHandler db;
 
     @Override
@@ -69,18 +36,18 @@ public class RegisterActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        inputFullName = (EditText) findViewById(R.id.name);
-        inputEmail = (EditText) findViewById(R.id.email);
-        inputPassword = (EditText) findViewById(R.id.password);
-        btnRegister = (Button) findViewById(R.id.btnRegister);
-        btnLinkToLogin = (Button) findViewById(R.id.btnLinkToLoginScreen);
+        final EditText inputUsername = (EditText) findViewById(R.id.reg_username);
+        final EditText inputEmail = (EditText) findViewById(R.id.reg_email);
+        final EditText inputPassword = (EditText) findViewById(R.id.reg_password);
+        Button btnRegister = (Button) findViewById(R.id.btnRegister);
+        Button btnLinkToLogin = (Button) findViewById(R.id.link_to_login);
 
         // Progress dialog
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
 
         // Session manager
-        session = new SessionManager(getApplicationContext());
+        SessionManager session = new SessionManager(getApplicationContext());
 
         // SQLite database handler
         db = new SQLiteHandler(getApplicationContext());
@@ -97,7 +64,7 @@ public class RegisterActivity extends Activity {
         // Register Button Click event
         btnRegister.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                String name = inputFullName.getText().toString().trim();
+                String name = inputUsername.getText().toString().trim();
                 String email = inputEmail.getText().toString().trim();
                 String password = inputPassword.getText().toString().trim();
 
@@ -141,7 +108,7 @@ public class RegisterActivity extends Activity {
 
             @Override
             public void onResponse(String response) {
-                Log.d(TAG, "Register Response: " + response.toString());
+                Log.d(TAG, "Register Response: " + response);
                 hideDialog();
 
                 try {
@@ -150,7 +117,6 @@ public class RegisterActivity extends Activity {
                     if (!error) {
                         // User successfully stored in MySQL
                         // Now store the user in sqlite
-                        String uid = jObj.getString("uid");
 
                         JSONObject user = jObj.getJSONObject("user");
                         String name = user.getString("name");
@@ -159,7 +125,7 @@ public class RegisterActivity extends Activity {
                                 .getString("created_at");
 
                         // Inserting row in users table
-                        db.addUser(name, email, uid, created_at);
+                        db.addUser(name, email, created_at);
 
                         Toast.makeText(getApplicationContext(), "User successfully registered. Try login now!", Toast.LENGTH_LONG).show();
 
@@ -174,8 +140,7 @@ public class RegisterActivity extends Activity {
                         // Error occurred in registration. Get the error
                         // message
                         String errorMsg = jObj.getString("error_msg");
-                        Toast.makeText(getApplicationContext(),
-                                errorMsg, Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), errorMsg, Toast.LENGTH_LONG).show();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -196,7 +161,7 @@ public class RegisterActivity extends Activity {
             @Override
             protected Map<String, String> getParams() {
                 // Posting params to register url
-                Map<String, String> params = new HashMap<String, String>();
+                Map<String, String> params = new HashMap<>();
                 params.put("name", name);
                 params.put("email", email);
                 params.put("password", password);
