@@ -4,8 +4,6 @@ import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.support.v7.app.ActionBar.LayoutParams;
-import android.view.LayoutInflater;
 import android.content.Intent;
 
 public class MainActivity extends AppCompatActivity {
