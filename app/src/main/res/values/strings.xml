@@ -1,22 +1,19 @@
 <resources>
     <string name="app_name">FindIt</string>
     <string name="title_activity_maps">Map</string>
-    <string name="hint_email">Email</string>
-    <string name="hint_password">Password</string>
-    <string name="hint_name">Fullname</string>
     <string name="btn_login">LOGIN</string>
-    <string name="btn_register">REGISTER</string>
-    <string name="btn_link_to_register">Not a member? Sign up now.</string>
+    <string name="btn_register">Register new account</string>
+    <string name="btn_link_to_register">New to FindIt? Register here</string>
     <string name="btn_link_to_login">Already registred! Login Me.</string>
     <string name="welcome">Welcome</string>
     <string name="btn_logout">LOGOUT</string>
-    <string name="name">Fullname</string>
     <string name="title_activity_login">Sign in</string>
+    <string name="title_activity_register">Sign up</string>
 
     <!-- Strings related to login -->
+    <string name="prompt_name">Username</string>
     <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password (optional)</string>
-    <string name="action_sign_in">Sign in or register</string>
+    <string name="prompt_password">Password</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_invalid_password">This password is too short</string>
@@ -25,5 +22,4 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
-    <string name="title_activity_register">RegisterActivity</string>
 </resources>
