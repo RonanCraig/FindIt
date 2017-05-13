@@ -14,34 +14,60 @@
     android:name="com.google.android.gms.maps.SupportMapFragment"
     android:layout_width="match_parent"
     android:layout_height="200dp"
-    android:layout_marginTop="220dp"
+    android:layout_marginTop="200dp"
     android:layout_marginRight="18dp"
     android:layout_marginLeft="18dp"
     tools:context="com.example.ronan_local.findit.MapsActivity" />
 
-    <Button
-        android:id="@+id/nextLocationButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="160dp"
+        android:layout_height="70dp"
         android:layout_alignLeft="@+id/map"
         android:layout_alignStart="@+id/map"
         android:layout_below="@+id/map"
-        android:layout_marginLeft="67dp"
-        android:layout_marginStart="67dp"
-        android:layout_marginTop="19dp"
+        android:layout_marginTop="14dp"
+        android:background="@null"
+        android:contentDescription="@null"
         android:onClick="nextLocationButtonClick"
-        android:text="Next" />
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/nextbutton" />
 
-    <Button
-        android:id="@+id/showAllButton"
+    <ImageButton
+        android:id="@+id/imageButton3"
+        android:layout_width="160dp"
+        android:layout_height="70dp"
+        android:layout_alignEnd="@+id/map"
+        android:layout_alignRight="@+id/map"
+        android:layout_alignTop="@+id/imageButton"
+        android:background="@null"
+        android:contentDescription="@null"
+        android:onClick="showAllButtonClick"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/showallbutton" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="180dp"
+        android:layout_height="70dp"
+        android:layout_below="@+id/imageButton"
+        android:layout_centerHorizontal="true"
+        android:background="@null"
+        android:contentDescription="@null"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/alertfriendsbutton" />
+
+    <ListView
+        android:id="@+id/list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/nextLocationButton"
-        android:layout_marginLeft="47dp"
-        android:layout_marginStart="47dp"
-        android:layout_toEndOf="@+id/nextLocationButton"
-        android:layout_toRightOf="@+id/nextLocationButton"
-        android:onClick="showAllButtonClick"
-        android:text="Show All" />
+        android:layout_alignEnd="@+id/map"
+        android:layout_alignLeft="@+id/map"
+        android:layout_alignRight="@+id/map"
+        android:layout_alignStart="@+id/map"
+        android:background="@drawable/transparentbackground"
+        android:scrollbars="none|vertical"
+        android:text="List View" />
 
 </RelativeLayout>
