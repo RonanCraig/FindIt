@@ -19,27 +19,6 @@
     android:layout_marginLeft="18dp"
     tools:context="com.example.ronan_local.findit.MapsActivity" />
 
-    <Button
-        android:id="@+id/nextLocationButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="nextLocationButtonClick"
-        android:text="Next"
-        android:layout_above="@+id/textView"
-        android:layout_centerHorizontal="true" />
-
-    <Button
-        android:id="@+id/showAllButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="14dp"
-        android:layout_marginStart="14dp"
-        android:onClick="showAllButtonClick"
-        android:text="Show All"
-        android:layout_alignParentTop="true"
-        android:layout_alignLeft="@+id/map"
-        android:layout_alignStart="@+id/map"
-        android:layout_marginTop="50dp" />
 
     <ImageButton
         android:id="@+id/imageButton"
@@ -79,16 +58,16 @@
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/alertfriendsbutton" />
 
-    <TextView
-        android:id="@+id/textView"
+    <ListView
+        android:id="@+id/list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        android:background="@drawable/transparentbackground"
-        android:layout_below="@+id/showAllButton"
+        android:layout_alignEnd="@+id/map"
         android:layout_alignLeft="@+id/map"
-        android:layout_alignStart="@+id/map"
         android:layout_alignRight="@+id/map"
-        android:layout_alignEnd="@+id/map" />
+        android:layout_alignStart="@+id/map"
+        android:background="@drawable/transparentbackground"
+        android:scrollbars="none|vertical"
+        android:text="List View" />
 
 </RelativeLayout>

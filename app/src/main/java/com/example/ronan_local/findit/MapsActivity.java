@@ -10,7 +10,6 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -448,8 +447,8 @@ public class MapsActivity extends AppCompatActivity
             // Getting name
             String name = hmPlace.get("place_name");
 
-            TextView textView = (TextView)findViewById(R.id.textView);
-            textView.setText(name);
+            //TextView textView = (TextView)findViewById(R.id.name);
+            //textView.setText(name);
 
             Log.d("Map", "place: " + name);
 
