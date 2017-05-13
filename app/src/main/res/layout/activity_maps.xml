@@ -9,12 +9,17 @@
 
 
     <FrameLayout
-        android:layout_width="340dp"
+        android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="16dp"
+        app:layout_constraintVertical_bias="0.0"
+        android:layout_marginBottom="16dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -27,6 +32,17 @@
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
+                <ImageButton
+                    android:id="@+id/settings_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:contentDescription="@null"
+                    android:onClick="buttonSettingsClicked"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/iconsettings" />
+
                 <ImageView
                     android:id="@+id/pageicon"
                     android:layout_width="0dp"
@@ -35,14 +51,21 @@
                     android:contentDescription="@null"
                     android:scaleType="fitCenter"
                     app:srcCompat="@drawable/iconcinema" />
+
+                <Button
+                    android:id="@+id/button2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Button" />
             </LinearLayout>
 
             <TextView
                 android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:background="@drawable/transparentbackground"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:background="@drawable/transparentbackground" />
 
             <ListView
                 android:id="@+id/list"
@@ -63,7 +86,6 @@
                 tools:context="com.example.ronan_local.findit.MapsActivity"
                 tools:layout_editor_absoluteX="26dp"
                 tools:layout_editor_absoluteY="0dp" />
-
 
 
             <LinearLayout
