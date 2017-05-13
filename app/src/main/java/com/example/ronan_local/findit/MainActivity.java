@@ -15,6 +15,12 @@ public class MainActivity extends AppCompatActivity {
         //getSupportActionBar().hide();
     }
 
+    public void buttonSettingsClicked(View view)
+    {
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
+    }
+
     public void showMap(View view)
     {
         Intent intent = new Intent(this, MapsActivity.class);
