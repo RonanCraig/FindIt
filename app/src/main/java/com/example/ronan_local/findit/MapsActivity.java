@@ -10,6 +10,10 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Adapter;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -95,7 +99,13 @@ public class MapsActivity extends AppCompatActivity
         //Initialize Google Play Services
         buildGoogleApiClient();
         mGoogleApiClient.connect();
+
+
+
+
+
     }
+
 
     protected synchronized void buildGoogleApiClient() {
         mGoogleApiClient = new GoogleApiClient.Builder(this)
@@ -160,8 +170,14 @@ public class MapsActivity extends AppCompatActivity
 
     private class PathDrawer
     {
-        public void createPath(LatLng latlngOne, LatLng latlngTwo)
+        String travelMode;
+        LatLng destination;
+        public void createPath(LatLng latlngOne, LatLng latlngTwo, String mode)
         {
+            //ListView listView = (ListView) findViewById(R.id.list);
+            //listView.setAdapter(null);
+            travelMode = mode;
+            destination = latlngTwo;
             String url = getMapsApiDirectionsUrl(latlngOne, latlngTwo);
             ReadTask downloadTask = new ReadTask();
             // Start downloading json data from Google Directions API
@@ -180,8 +196,10 @@ public class MapsActivity extends AppCompatActivity
             // Sensor enabled
             String sensor = "sensor=false";
 
+            String mode = travelMode;
+
             // Building the parameters to the web service
-            String parameters = str_origin+"&"+str_dest+"&"+sensor;
+            String parameters = str_origin+"&"+str_dest+"&"+sensor+"&"+mode;
 
             // Output format
             String output = "json";
@@ -189,7 +207,7 @@ public class MapsActivity extends AppCompatActivity
             // Building the url to the web service
             String url = "https://maps.googleapis.com/maps/api/directions/"+output+"?"+parameters;
 
-
+            Log.d("url: ", url);
             return url;
 
         }
@@ -260,6 +278,7 @@ public class MapsActivity extends AppCompatActivity
                 JSONArray jLegs = null;
                 JSONArray jSteps = null;
                 try {
+                    final ArrayList arrayList = new ArrayList<String>();
                     jRoutes = jObject.getJSONArray("routes");
                     for (int i=0 ; i < jRoutes.length() ; i ++) {
                         jLegs = ((JSONObject) jRoutes.get(i)).getJSONArray("legs");
@@ -267,6 +286,15 @@ public class MapsActivity extends AppCompatActivity
                         for(int j = 0 ; j < jLegs.length() ; j++) {
                             jSteps = ((JSONObject) jLegs.get(j)).getJSONArray("steps");
                             for(int k = 0 ; k < jSteps.length() ; k ++) {
+                                String instruction = (String) ( (JSONObject) (jSteps.get(k)) ).get("html_instructions");
+                                String distance = (String) ( (JSONObject) ( (JSONObject) (jSteps.get(k)) ).get("distance") ).get("text");
+                                instruction = instruction.replace("<b>","");
+                                instruction = instruction.replace("</b>","");
+                                instruction = instruction.replace("<div style=\"font-size:0.9em\">"," ");
+                                instruction = instruction.replace("</div>","");
+                                instruction = instruction + "\n" + distance;
+                                Log.d("Instruction: ", instruction);
+                                arrayList.add(instruction);
                                 String polyline = "";
                                 polyline = (String) ((JSONObject) ((JSONObject) jSteps.get(k)).get("polyline")).get("points");
                                 List<LatLng> list = decodePoly(polyline);
@@ -283,7 +311,17 @@ public class MapsActivity extends AppCompatActivity
                         }
 
                     }
-
+                    runOnUiThread(new Runnable()
+                    {
+                    @Override
+                        public void run()
+                        {
+                            ListView listView = (ListView) findViewById(R.id.list);
+                            ArrayAdapter adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, arrayList);
+                            listView.setAdapter(adapter);
+                            adapter.notifyDataSetChanged();
+                        }
+                    });
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -367,9 +405,17 @@ public class MapsActivity extends AppCompatActivity
                     polyLineOptions.width(4);
                     polyLineOptions.color(Color.BLUE);
                 }
-
-                mGoogleMap.addPolyline(polyLineOptions);
-
+                if(routes.size() > 0)
+                {
+                    Log.d("test: ", "1");
+                    mGoogleMap.addPolyline(polyLineOptions);
+                }
+                else if(travelMode.equals("mode=walking"))
+                {
+                    Log.d("test: ", "2");
+                    LatLng current = new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude());
+                    pathDrawer.createPath(current, destination, "mode=driving");
+                }
             }}
     }
 
@@ -402,6 +448,9 @@ public class MapsActivity extends AppCompatActivity
             // Getting name
             String name = hmPlace.get("place_name");
 
+            TextView textView = (TextView)findViewById(R.id.textView);
+            textView.setText(name);
+
             Log.d("Map", "place: " + name);
 
             // Getting vicinity
@@ -422,7 +471,7 @@ public class MapsActivity extends AppCompatActivity
             nextPositionInList++;
 
             LatLng current = new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude());
-            pathDrawer.createPath(current, latLng);
+            pathDrawer.createPath(current, latLng, "mode=walking");
         }
 
         private void showAllLocations() {
