@@ -23,51 +23,72 @@
         android:id="@+id/nextLocationButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/map"
-        android:layout_alignStart="@+id/map"
-        android:layout_below="@+id/map"
-        android:layout_marginLeft="67dp"
-        android:layout_marginStart="67dp"
-        android:layout_marginTop="19dp"
         android:onClick="nextLocationButtonClick"
-        android:text="Next" />
+        android:text="Next"
+        android:layout_above="@+id/textView"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:id="@+id/showAllButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/nextLocationButton"
-        android:layout_marginLeft="47dp"
-        android:layout_marginStart="47dp"
-        android:layout_toEndOf="@+id/nextLocationButton"
-        android:layout_toRightOf="@+id/nextLocationButton"
+        android:layout_marginLeft="14dp"
+        android:layout_marginStart="14dp"
         android:onClick="showAllButtonClick"
-        android:text="Show All" />
+        android:text="Show All"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/map"
+        android:layout_alignStart="@+id/map"
+        android:layout_marginTop="50dp" />
 
     <ImageButton
         android:id="@+id/imageButton"
-        android:layout_width="180dp"
+        android:layout_width="160dp"
         android:layout_height="70dp"
+        android:layout_alignLeft="@+id/map"
+        android:layout_alignStart="@+id/map"
+        android:layout_below="@+id/map"
+        android:layout_marginTop="14dp"
         android:background="@null"
         android:contentDescription="@null"
+        android:onClick="nextLocationButtonClick"
         android:scaleType="fitCenter"
-        app:srcCompat="@drawable/nextbutton"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="80dp" />
+        app:srcCompat="@drawable/nextbutton" />
 
     <ImageButton
         android:id="@+id/imageButton3"
+        android:layout_width="160dp"
+        android:layout_height="70dp"
+        android:layout_alignEnd="@+id/map"
+        android:layout_alignRight="@+id/map"
+        android:layout_alignTop="@+id/imageButton"
+        android:background="@null"
+        android:contentDescription="@null"
         android:onClick="showAllButtonClick"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/showallbutton" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
         android:layout_width="180dp"
         android:layout_height="70dp"
+        android:layout_below="@+id/imageButton"
+        android:layout_centerHorizontal="true"
         android:background="@null"
         android:contentDescription="@null"
         android:scaleType="fitCenter"
-        app:srcCompat="@drawable/showallbutton"
-        android:layout_below="@+id/nextLocationButton"
-        android:layout_alignLeft="@+id/imageButton"
-        android:layout_alignStart="@+id/imageButton"
-        android:layout_marginTop="14dp" />
+        app:srcCompat="@drawable/alertfriendsbutton" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:background="@drawable/transparentbackground"
+        android:layout_below="@+id/showAllButton"
+        android:layout_alignLeft="@+id/map"
+        android:layout_alignStart="@+id/map"
+        android:layout_alignRight="@+id/map"
+        android:layout_alignEnd="@+id/map" />
 
 </RelativeLayout>
