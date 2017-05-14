@@ -56,7 +56,7 @@ public class RegisterActivity extends AppCompatActivity {
         if (session.isLoggedIn()) {
             // User is already logged in. Take him to main activity
             Intent intent = new Intent(RegisterActivity.this,
-                    MainActivity.class);
+                    FriendsActivity.class);
             startActivity(intent);
             finish();
         }
@@ -72,8 +72,7 @@ public class RegisterActivity extends AppCompatActivity {
                     registerUser(name, email, password);
                 } else {
                     Toast.makeText(getApplicationContext(),
-                            "Please enter your details!", Toast.LENGTH_LONG)
-                            .show();
+                            "Please enter your details!", Toast.LENGTH_LONG).show();
                 }
             }
         });
