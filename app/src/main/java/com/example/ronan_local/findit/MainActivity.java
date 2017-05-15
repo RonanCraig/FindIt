@@ -27,6 +27,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void buttonFriendsClicked(View view)
+    {
+        Intent intent = new Intent(this, FriendsActivity.class);
+        startActivity(intent);
+    }
+
     public void showMap(View view)
     {
         Intent intent = new Intent(this, MapsActivity.class);

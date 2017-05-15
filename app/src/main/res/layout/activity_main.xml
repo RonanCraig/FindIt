@@ -90,6 +90,7 @@
         android:layout_marginBottom="16dp"
         android:background="@null"
         android:contentDescription="@null"
+        android:onClick="buttonFriendsClicked"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
