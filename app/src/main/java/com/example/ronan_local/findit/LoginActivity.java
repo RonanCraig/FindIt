@@ -123,7 +123,7 @@ public class LoginActivity extends Activity {
                         // Now store the user in SQLite
 
                         JSONObject user = jObj.getJSONObject("user");
-                        String name = user.getString("name");
+                        String name = user.getString("username");
                         String email = user.getString("email");
                         String created_at = user.getString("created_at");
 
