@@ -1,4 +1,4 @@
-package app;
+package com.example.ronan_local.findit;
 
 public class AppConfig {
     // Server user login url

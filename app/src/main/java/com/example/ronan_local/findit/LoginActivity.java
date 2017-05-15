@@ -1,6 +1,5 @@
 package com.example.ronan_local.findit;
 
-import app.AppController;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -22,7 +21,6 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-import app.AppConfig;
 import helper.SQLiteHandler;
 import helper.SessionManager;
 
