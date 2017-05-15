@@ -16,7 +16,7 @@
         android:background="@null"
         android:contentDescription="@null"
         android:scaleType="fitCenter"
-        android:onClick="buttonexitclicked"
+        android:onClick="buttonExitClicked"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/exitbutton" />
