@@ -71,8 +71,7 @@ public class RegisterActivity extends AppCompatActivity {
                     registerUser(name, email, password);
                 } else {
                     Toast.makeText(getApplicationContext(),
-                            "Please enter your details!", Toast.LENGTH_LONG)
-                            .show();
+                            "Please enter your details!", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -118,10 +117,9 @@ public class RegisterActivity extends AppCompatActivity {
                         // Now store the user in sqlite
 
                         JSONObject user = jObj.getJSONObject("user");
-                        String name = user.getString("name");
+                        String name = user.getString("username");
                         String email = user.getString("email");
-                        String created_at = user
-                                .getString("created_at");
+                        String created_at = user.getString("created_at");
 
                         // Inserting row in users table
                         db.addUser(name, email, created_at);
