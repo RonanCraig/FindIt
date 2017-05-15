@@ -1,4 +1,4 @@
-package app;
+package com.example.ronan_local.findit;
 
 
 // Created by tmoodey on 10/05/2017.
