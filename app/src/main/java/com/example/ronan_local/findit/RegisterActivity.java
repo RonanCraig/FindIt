@@ -120,7 +120,10 @@ public class RegisterActivity extends AppCompatActivity {
                         String name = user.getString("username");
                         String email = user.getString("email");
                         String created_at = user.getString("created_at");
-
+                        Log.d(TAG, "Name: " + name);
+                        Log.d(TAG, "Email: " + email);
+                        Log.d(TAG, "Created At: " + created_at);
+                        hideDialog();
                         // Inserting row in users table
                         db.addUser(name, email, created_at);
 
@@ -149,8 +152,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e(TAG, "Registration Error: " + error.getMessage());
-                Toast.makeText(getApplicationContext(),
-                        error.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
                 hideDialog();
             }
         }) {
@@ -162,7 +164,10 @@ public class RegisterActivity extends AppCompatActivity {
                 params.put("name", name);
                 params.put("email", email);
                 params.put("password", password);
-
+                Log.d(TAG, "Params: " + params);
+                Log.d(TAG, "name: " + name);
+                Log.d(TAG, "email: " + email);
+                Log.d(TAG, "password: " + password);
                 return params;
             }
 
