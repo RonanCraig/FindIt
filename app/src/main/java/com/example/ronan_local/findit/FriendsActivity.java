@@ -47,7 +47,6 @@ public class FriendsActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i = new Intent(getApplicationContext(),
                         MainActivity.class);
-                startActivity(i);
                 finish();
             }
         });
@@ -71,7 +70,6 @@ public class FriendsActivity extends AppCompatActivity {
 
         // Launching the login activity
         Intent intent = new Intent(FriendsActivity.this, MainActivity.class);
-        //startActivity(intent);
         finish();
     }
 }
