@@ -71,7 +71,7 @@ public class FriendsActivity extends AppCompatActivity {
 
         // Launching the login activity
         Intent intent = new Intent(FriendsActivity.this, MainActivity.class);
-        startActivity(intent);
+        //startActivity(intent);
         finish();
     }
 }
