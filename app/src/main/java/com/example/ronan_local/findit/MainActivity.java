@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.location.LocationManager;
 import android.net.Uri;
+import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -53,17 +54,26 @@ public class MainActivity extends AppCompatActivity {
             network = location.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
         } catch (Exception ex) {}
 
-        //Checks if location turned on, if not it requests that the user turns it on manually
+        //Checks if location turned on, if not it requests that the user turns it on and opens settings
         if(!gps && !network){
             AlertDialog locationOff = new AlertDialog.Builder(this).create();
             locationOff.setTitle("Location is disabled");
             locationOff.setMessage("Please turn on location in settings");
-            locationOff.setButton(AlertDialog.BUTTON_NEUTRAL, "Okay",
+            locationOff.setButton(AlertDialog.BUTTON_NEGATIVE, "Cancel",
                     new DialogInterface.OnClickListener(){
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();
                         }
-                    });
+                    }
+            );
+            locationOff.setButton(AlertDialog.BUTTON_POSITIVE, "Okay",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent settingsIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                            startActivity(settingsIntent);
+                        }
+                    }
+            );
             locationOff.show();
         }
 
