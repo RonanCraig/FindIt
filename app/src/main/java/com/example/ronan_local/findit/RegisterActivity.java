@@ -115,7 +115,7 @@ public class RegisterActivity extends AppCompatActivity {
                     if (!error) {
                         // User successfully stored in MySQL
                         // Now store the user in sqlite
-
+                        /*
                         JSONObject user = jObj.getJSONObject("user");
                         String name = user.getString("username");
                         String email = user.getString("email");
@@ -126,7 +126,7 @@ public class RegisterActivity extends AppCompatActivity {
                         hideDialog();
                         // Inserting row in users table
                         db.addUser(name, email, created_at);
-
+                        */
                         Toast.makeText(getApplicationContext(), "User successfully registered. Try login now!", Toast.LENGTH_LONG).show();
 
                         // Launch login activity
@@ -161,7 +161,7 @@ public class RegisterActivity extends AppCompatActivity {
             protected Map<String, String> getParams() {
                 // Posting params to register url
                 Map<String, String> params = new HashMap<>();
-                params.put("name", name);
+                params.put("username", name);
                 params.put("email", email);
                 params.put("password", password);
                 Log.d(TAG, "Params: " + params);

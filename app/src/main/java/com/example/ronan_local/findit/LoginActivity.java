@@ -122,7 +122,7 @@ public class LoginActivity extends Activity {
 
                         // Now store the user in SQLite
 
-                        JSONObject user = jObj.getJSONObject("user");
+                        JSONObject user = jObj.getJSONObject("users");
                         String name = user.getString("username");
                         String email = user.getString("email");
                         String created_at = user.getString("created_at");
@@ -132,7 +132,7 @@ public class LoginActivity extends Activity {
 
                         // Launch main activity
                         Intent intent = new Intent(LoginActivity.this,
-                                MainActivity.class);
+                                FriendsActivity.class);
                         startActivity(intent);
                         finish();
                     } else {
@@ -161,10 +161,9 @@ public class LoginActivity extends Activity {
             @Override
             protected Map<String, String> getParams() {
                 // Posting parameters to login url
-                Map<String, String> params = new HashMap<>();
+                Map<String, String> params = new HashMap<String, String>();
                 params.put("email", email);
                 params.put("password", password);
-
                 return params;
             }
 
