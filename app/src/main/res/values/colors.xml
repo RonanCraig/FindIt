@@ -17,4 +17,5 @@
     <color name="lbl_name">#333333</color>
     <color name="btn_logut_bg">#ff6861</color>
     <color name="home">#03fd70</color>
+    <color name="transparentwhite">#40FFFFFF</color>
 </resources>

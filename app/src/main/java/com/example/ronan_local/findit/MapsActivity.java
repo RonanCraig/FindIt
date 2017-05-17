@@ -1,6 +1,7 @@
 package com.example.ronan_local.findit;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
@@ -165,6 +166,18 @@ public class MapsActivity extends AppCompatActivity
     public void showAllButtonClick(View view)
     {
         locationsContainer.showAllLocations();
+    }
+
+    public void buttonLoginClicked(View view)
+    {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
+
+    public void buttonSettingsClicked(View view)
+    {
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
     }
 
     private class PathDrawer
