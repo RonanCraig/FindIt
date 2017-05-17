@@ -68,7 +68,7 @@ public class MapsActivity extends AppCompatActivity
         //getSupportActionBar().hide();
         String Icontype = getIntent().getStringExtra("typesToSearch");
         ImageView PageIcon = (ImageView) findViewById(R.id.pageicon);
-        if(Icontype.equals("movie_theatre")){
+        if(Icontype.equals("movie_theater")){
             PageIcon.setImageResource(R.drawable.iconcinema);
         }
         else if(Icontype.equals("restaurant|cafe|meal_takeaway")){
