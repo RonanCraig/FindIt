@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.ronan_local.findit.MainActivity"
+    android:background="@drawable/backgroundland"
+    tools:layout_editor_absoluteY="25dp"
+    tools:layout_editor_absoluteX="0dp">
+
+    <ImageButton
+        android:id="@+id/cinema_btn"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@null"
+        android:contentDescription="@null"
+        android:onClick="showMap"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/iconcinema"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.498"
+        app:layout_constraintRight_toLeftOf="@+id/restaurant_btn"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <ImageButton
+        android:id="@+id/carpark_btn"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@null"
+        android:contentDescription="@null"
+        android:onClick="showMap"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/iconcarpark"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.498"
+        app:layout_constraintRight_toLeftOf="@+id/park_btn"
+        app:layout_constraintLeft_toRightOf="@+id/restaurant_btn" />
+
+    <ImageButton
+        android:id="@+id/restaurant_btn"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@null"
+        android:contentDescription="@null"
+        android:onClick="showMap"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/iconrestaurant"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.498"
+        app:layout_constraintRight_toLeftOf="@+id/carpark_btn"
+        app:layout_constraintLeft_toRightOf="@+id/cinema_btn" />
+
+    <ImageButton
+        android:id="@+id/park_btn"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@null"
+        android:contentDescription="@null"
+        android:onClick="showMap"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/iconpark"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.498"
+        app:layout_constraintLeft_toRightOf="@+id/carpark_btn" />
+
+    <ImageButton
+        android:id="@+id/friends_btn"
+        android:layout_width="190dp"
+        android:layout_height="70dp"
+        android:background="@null"
+        android:contentDescription="@null"
+        android:onClick="buttonFriendsClicked"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/friendsbutton"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="16dp" />
+
+    <ImageButton
+        android:id="@+id/settings_btn"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@null"
+        android:contentDescription="@null"
+        android:onClick="buttonSettingsClicked"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/iconsettings"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="16dp" />
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:contentDescription="@null"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/logo"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="16dp" />
+
+</android.support.constraint.ConstraintLayout>
