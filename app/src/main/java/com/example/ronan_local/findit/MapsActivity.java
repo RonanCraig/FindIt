@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -65,6 +66,20 @@ public class MapsActivity extends AppCompatActivity
         mapFrag = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFrag.getMapAsync(this);
         //getSupportActionBar().hide();
+        String Icontype = getIntent().getStringExtra("typesToSearch");
+        ImageView PageIcon = (ImageView) findViewById(R.id.pageicon);
+        if(Icontype.equals("movie_theater")){
+            PageIcon.setImageResource(R.drawable.iconcinema);
+        }
+        else if(Icontype.equals("restaurant|cafe|meal_takeaway")){
+            PageIcon.setImageResource(R.drawable.iconrestaurant);
+        }
+        else if(Icontype.equals("parking")){
+            PageIcon.setImageResource(R.drawable.iconcarpark);
+        }
+        else if(Icontype.equals("park")){
+            PageIcon.setImageResource(R.drawable.iconpark);
+        }
     }
 
     @Override
