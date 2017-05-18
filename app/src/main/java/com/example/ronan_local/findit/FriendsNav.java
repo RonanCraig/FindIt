@@ -87,15 +87,11 @@ public class FriendsNav extends AppCompatActivity
             Intent intent = new Intent(FriendsNav.this, MainActivity.class);
             startActivity(intent);
             finish();
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_add_friend){
 
         } else if (id == R.id.nav_logout) {
             logoutUser();
         } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
 
         }
 
