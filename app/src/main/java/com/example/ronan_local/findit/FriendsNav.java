@@ -83,8 +83,10 @@ public class FriendsNav extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
+        if (id == R.id.nav_home) {
+            Intent intent = new Intent(FriendsNav.this, MainActivity.class);
+            startActivity(intent);
+            finish();
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
