@@ -2,6 +2,7 @@ package com.example.ronan_local.findit;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,6 +22,8 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import helper.FriendsContract;
+import helper.UserContract;
 import helper.SQLiteHandler;
 import helper.SessionManager;
 
@@ -30,7 +33,6 @@ public class LoginActivity extends Activity {
     private EditText inputPassword;
     private ProgressDialog pDialog;
     private SessionManager session;
-    private SQLiteHandler db;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,8 +48,6 @@ public class LoginActivity extends Activity {
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
 
-        // SQLite database handler
-        db = new SQLiteHandler(getApplicationContext());
 
         // Session manager
         session = new SessionManager(getApplicationContext());
@@ -96,6 +96,7 @@ public class LoginActivity extends Activity {
      * function to verify login details in mysql db
      * */
     private void checkLogin(final String email, final String password) {
+        //getApplicationContext().deleteDatabase("c773androidMySQL");
         // Tag used to cancel the request
         String tag_string_req = "req_login";
 
@@ -127,8 +128,13 @@ public class LoginActivity extends Activity {
                         String email = user.getString("email");
                         String created_at = user.getString("created_at");
 
-                        // Inserting row in users table
-                        db.addUser(name, email, created_at);
+                        ContentValues values = new ContentValues();
+                        values.put(FriendsContract.Friends_Table.KEY_ID, 1);
+                        values.put(FriendsContract.Friends_Table.KEY_NAME, "Tim");
+                        getContentResolver().insert(FriendsContract.Friends_Table.CONTENT_URI,values);
+
+                        values = new ContentValues();
+                        values.put(UserContract.User_Table.KEY_ID, 1);
 
                         // Launch main activity
                         Intent intent = new Intent(LoginActivity.this,

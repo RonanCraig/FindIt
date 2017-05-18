@@ -28,7 +28,6 @@ import helper.SessionManager;
 public class RegisterActivity extends AppCompatActivity {
     private static final String TAG = RegisterActivity.class.getSimpleName();
     private ProgressDialog pDialog;
-    private SQLiteHandler db;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,8 +47,6 @@ public class RegisterActivity extends AppCompatActivity {
         // Session manager
         SessionManager session = new SessionManager(getApplicationContext());
 
-        // SQLite database handler
-        db = new SQLiteHandler(getApplicationContext());
 
         // Check if user is already logged in or not
         if (session.isLoggedIn()) {
