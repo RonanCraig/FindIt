@@ -40,16 +40,6 @@ public class FriendsActivity extends AppCompatActivity {
         String name = user.get("name");
         String email = user.get("email");
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(),
-                        MainActivity.class);
-                finish();
-            }
-        });
-
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
