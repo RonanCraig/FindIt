@@ -22,7 +22,6 @@ public class FriendsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friends);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("@string/title_activity_friends");
         setSupportActionBar(toolbar);
         Button btnLogout = (Button) findViewById(R.id.btnLogout);
         // SqLite database handler
