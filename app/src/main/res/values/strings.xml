@@ -22,8 +22,7 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
-    <string name="title_activity_friends">Friends</string>
-    <string name="title_activity_friends_nav">FriendsNav</string>
+    <string name="title_activity_friends_nav">Friends</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
