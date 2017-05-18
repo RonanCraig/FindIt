@@ -2,6 +2,7 @@ package com.example.ronan_local.findit;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,6 +22,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import helper.FriendsContract;
 import helper.SQLiteHandler;
 import helper.SessionManager;
 
@@ -93,7 +95,9 @@ public class LoginActivity extends Activity {
      * function to verify login details in mysql db
      * */
     private void checkLogin(final String email, final String password) {
+        //getApplicationContext().deleteDatabase("c773androidMySQL");
         // Tag used to cancel the request
+        getContentResolver().delete(FriendsContract.Friends_Table.CONTENT_URI, null, null);
         String tag_string_req = "req_login";
 
         pDialog.setMessage("Logging in ...");
@@ -124,6 +128,10 @@ public class LoginActivity extends Activity {
                         String email = user.getString("email");
                         String created_at = user.getString("created_at");
 
+                        ContentValues values = new ContentValues();
+                        values.put(FriendsContract.Friends_Table.KEY_ID, 1);
+                        values.put(FriendsContract.Friends_Table.KEY_NAME, "Tim");
+                        getContentResolver().insert(FriendsContract.Friends_Table.CONTENT_URI,values);
 
                         // Launch main activity
                         Intent intent = new Intent(LoginActivity.this,

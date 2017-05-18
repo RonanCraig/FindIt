@@ -24,18 +24,23 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     // Database Name
     public static final String DATABASE_NAME = "c773androidMySQL";
 
+    public SQLiteDatabase myDB;
 
     public SQLiteHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        myDB = getWritableDatabase();
+
     }
 
     // Creating Tables
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String CREATE_FRIEND_TABLE = "CREATE TABLE " + FriendsContract.Friends_Table.TABLE_NAME + "("
-                + FriendsContract.Friends_Table.KEY_ID + " INTEGER PRIMARY KEY," + FriendsContract.Friends_Table.KEY_NAME + " TEXT," + ")";
+        myDB = db;
+        String CREATE_FRIEND_TABLE = "CREATE TABLE IF NOT EXISTS " + FriendsContract.Friends_Table.TABLE_NAME + "("
+                + FriendsContract.Friends_Table.KEY_ID + " INTEGER PRIMARY KEY," + FriendsContract.Friends_Table.KEY_NAME + " TEXT" + ")";
         db.execSQL(CREATE_FRIEND_TABLE);
 
+        db.execSQL(CREATE_FRIEND_TABLE);
         Log.d(TAG, "Database tables created");
     }
 
@@ -47,6 +52,11 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
         // Create tables again
         onCreate(db);
+    }
+
+    public void clearTable(String table_name)
+    {
+        myDB.execSQL("DELETE FROM "+ table_name);
     }
 
 }

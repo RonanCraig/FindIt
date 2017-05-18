@@ -38,16 +38,16 @@ public class OurContentProvider extends ContentProvider {
     public int delete(Uri uri, String selection, String[] selectionArgs) {
         // Implement this to handle requests to delete one or more rows.
         int match_code = myUriMatcher.match(uri);
-        /*
+
         switch(match_code){
-            case MOVIE:{
-                myDBHelper.clearTable(MovieContract.Movie_Table.TABLE_NAME);
+            case FRIEND:{
+                myDBHelper.clearTable(FriendsContract.Friends_Table.TABLE_NAME);
                 break;
             }
             default:
                 throw new UnsupportedOperationException("Not yet implemented");
         }
-        */
+
         return 0;
     }
 
@@ -94,6 +94,7 @@ public class OurContentProvider extends ContentProvider {
         myDBHelper = new SQLiteHandler(getContext());
         return true;
     }
+
 
     @Override
     public Cursor query(Uri uri, String[] projection, String selection,

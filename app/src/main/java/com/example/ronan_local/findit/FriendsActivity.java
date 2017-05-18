@@ -36,10 +36,10 @@ public class FriendsActivity extends AppCompatActivity {
         }
 
         // Fetching user details from sqlite
-        HashMap<String, String> user = db.getUserDetails();
+        //HashMap<String, String> user = db.getUserDetails();
 
-        String name = user.get("name");
-        String email = user.get("email");
+        //String name = user.get("name");
+        //String email = user.get("email");
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -66,7 +66,7 @@ public class FriendsActivity extends AppCompatActivity {
     private void logoutUser() {
         session.setLogin(false);
 
-        db.deleteUsers();
+        //db.deleteUsers();
 
         // Launching the login activity
         Intent intent = new Intent(FriendsActivity.this, MainActivity.class);
