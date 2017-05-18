@@ -5,24 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.ronan_local.findit.MainActivity"
-    android:background="@drawable/background">
+    android:background="@drawable/background"
+    tools:layout_editor_absoluteY="25dp"
+    tools:layout_editor_absoluteX="0dp">
 
     <ImageButton
         android:id="@+id/cinema_btn"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_marginTop="117dp"
         android:background="@null"
         android:contentDescription="@null"
         android:onClick="showMap"
         android:scaleType="fitXY"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/iconcinema"
-        tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintRight_creator="1"
-        tools:layout_constraintTop_creator="1" />
+        android:layout_marginTop="50dp"
+        app:layout_constraintTop_toBottomOf="@+id/logo"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
     <ImageButton
         android:id="@+id/carpark_btn"
@@ -33,16 +32,10 @@
         android:onClick="showMap"
         android:scaleType="fitXY"
         app:srcCompat="@drawable/iconcarpark"
-        tools:layout_constraintTop_creator="1"
-        tools:layout_constraintBottom_creator="1"
-        app:layout_constraintBottom_toBottomOf="@+id/cinema_btn"
-        android:layout_marginTop="80dp"
-        tools:layout_constraintLeft_creator="1"
-        android:layout_marginBottom="80dp"
-        app:layout_constraintTop_toTopOf="@+id/cinema_btn"
+        android:layout_marginTop="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/cinema_btn"
         app:layout_constraintLeft_toRightOf="@+id/cinema_btn"
-        android:layout_marginLeft="0dp"
-        app:layout_constraintVertical_bias="0.0" />
+        android:layout_marginLeft="0dp" />
 
     <ImageButton
         android:id="@+id/restaurant_btn"
@@ -53,16 +46,10 @@
         android:onClick="showMap"
         android:scaleType="fitXY"
         app:srcCompat="@drawable/iconrestaurant"
+        android:layout_marginTop="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/cinema_btn"
         app:layout_constraintRight_toLeftOf="@+id/cinema_btn"
-        tools:layout_constraintTop_creator="1"
-        tools:layout_constraintRight_creator="1"
-        tools:layout_constraintBottom_creator="1"
-        app:layout_constraintBottom_toBottomOf="@+id/cinema_btn"
-        android:layout_marginTop="80dp"
-        android:layout_marginBottom="80dp"
-        app:layout_constraintTop_toTopOf="@+id/cinema_btn"
-        android:layout_marginRight="0dp"
-        app:layout_constraintVertical_bias="0.0" />
+        android:layout_marginRight="0dp" />
 
     <ImageButton
         android:id="@+id/park_btn"
@@ -73,55 +60,49 @@
         android:onClick="showMap"
         android:scaleType="fitXY"
         app:srcCompat="@drawable/iconpark"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        tools:layout_constraintTop_creator="1"
-        tools:layout_constraintRight_creator="1"
-        tools:layout_constraintBottom_creator="1"
-        tools:layout_constraintLeft_creator="1"
-        app:layout_constraintVertical_bias="0.568" />
+        android:layout_marginTop="80dp"
+        app:layout_constraintTop_toBottomOf="@+id/cinema_btn"
+        app:layout_constraintLeft_toRightOf="@+id/restaurant_btn"
+        android:layout_marginLeft="0dp"
+        app:layout_constraintRight_toLeftOf="@+id/carpark_btn"
+        android:layout_marginRight="0dp" />
 
     <ImageButton
         android:id="@+id/friends_btn"
         android:layout_width="190dp"
         android:layout_height="70dp"
-        android:layout_marginBottom="16dp"
         android:background="@null"
         android:contentDescription="@null"
         android:onClick="buttonFriendsClicked"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:srcCompat="@drawable/friendsbutton"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:srcCompat="@drawable/friendsbutton" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="16dp" />
 
     <ImageButton
         android:id="@+id/settings_btn"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
         android:background="@null"
         android:contentDescription="@null"
         android:onClick="buttonSettingsClicked"
         android:scaleType="fitCenter"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/iconsettings" />
+        app:srcCompat="@drawable/iconsettings"
+        tools:layout_editor_absoluteY="16dp"
+        tools:layout_editor_absoluteX="16dp" />
 
     <ImageView
         android:id="@+id/logo"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:layout_marginTop="16dp"
         android:contentDescription="@null"
         android:scaleType="fitCenter"
+        app:srcCompat="@drawable/logo"
+        android:layout_marginTop="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo" />
+        app:layout_constraintRight_toRightOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
