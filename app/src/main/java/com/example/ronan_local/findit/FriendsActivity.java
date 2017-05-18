@@ -8,8 +8,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 
+import helper.FriendsContract;
 import helper.SQLiteHandler;
 import helper.SessionManager;
+import helper.UserContract;
 
 import java.util.HashMap;
 
@@ -65,7 +67,8 @@ public class FriendsActivity extends AppCompatActivity {
      * */
     private void logoutUser() {
         session.setLogin(false);
-
+        getContentResolver().delete(FriendsContract.Friends_Table.CONTENT_URI, null, null);
+        getContentResolver().delete(UserContract.User_Table.CONTENT_URI, null, null);
         //db.deleteUsers();
 
         // Launching the login activity

@@ -20,11 +20,13 @@ public class OurContentProvider extends ContentProvider {
     private static final UriMatcher myUriMatcher = buildUriMatcher();
     public static SQLiteHandler myDBHelper;
     public static final int FRIEND = 100;
+    public static final int USER = 101;
 
     private static UriMatcher buildUriMatcher(){
         final UriMatcher matcher = new UriMatcher(UriMatcher.NO_MATCH);
 
         matcher.addURI(FriendsContract.CONTENT_AUTHORITY,FriendsContract.PATH_FRIEND,FRIEND);
+        matcher.addURI(UserContract.CONTENT_AUTHORITY,UserContract.PATH_USER,USER);
 
         //matcher.addURI(MovieContract.CONTENT_AUTHORITY,MovieContract.PATH_MOVIE+"/#",MOVIE_WITH_ID);
 
@@ -42,6 +44,10 @@ public class OurContentProvider extends ContentProvider {
         switch(match_code){
             case FRIEND:{
                 myDBHelper.clearTable(FriendsContract.Friends_Table.TABLE_NAME);
+                break;
+            }
+            case USER:{
+                myDBHelper.clearTable(UserContract.User_Table.TABLE_NAME);
                 break;
             }
             default:
@@ -75,6 +81,16 @@ public class OurContentProvider extends ContentProvider {
                 long _id = db.insert(FriendsContract.Friends_Table.TABLE_NAME,null,values);
                 if (_id > 0) {
                     retUri = FriendsContract.Friends_Table.buildMovieUriWithID(_id);
+                }
+                else
+                    throw new SQLException("failed to insert");
+                break;
+            }
+            case USER:{
+                SQLiteDatabase db = myDBHelper.getWritableDatabase();
+                long _id = db.insert(UserContract.User_Table.TABLE_NAME,null,values);
+                if (_id > 0) {
+                    retUri = UserContract.User_Table.buildMovieUriWithID(_id);
                 }
                 else
                     throw new SQLException("failed to insert");

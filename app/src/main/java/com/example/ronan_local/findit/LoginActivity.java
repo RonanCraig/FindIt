@@ -23,6 +23,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import helper.FriendsContract;
+import helper.UserContract;
 import helper.SQLiteHandler;
 import helper.SessionManager;
 
@@ -97,7 +98,6 @@ public class LoginActivity extends Activity {
     private void checkLogin(final String email, final String password) {
         //getApplicationContext().deleteDatabase("c773androidMySQL");
         // Tag used to cancel the request
-        getContentResolver().delete(FriendsContract.Friends_Table.CONTENT_URI, null, null);
         String tag_string_req = "req_login";
 
         pDialog.setMessage("Logging in ...");
@@ -132,6 +132,9 @@ public class LoginActivity extends Activity {
                         values.put(FriendsContract.Friends_Table.KEY_ID, 1);
                         values.put(FriendsContract.Friends_Table.KEY_NAME, "Tim");
                         getContentResolver().insert(FriendsContract.Friends_Table.CONTENT_URI,values);
+
+                        values = new ContentValues();
+                        values.put(UserContract.User_Table.KEY_ID, 1);
 
                         // Launch main activity
                         Intent intent = new Intent(LoginActivity.this,

@@ -40,7 +40,10 @@ public class SQLiteHandler extends SQLiteOpenHelper {
                 + FriendsContract.Friends_Table.KEY_ID + " INTEGER PRIMARY KEY," + FriendsContract.Friends_Table.KEY_NAME + " TEXT" + ")";
         db.execSQL(CREATE_FRIEND_TABLE);
 
-        db.execSQL(CREATE_FRIEND_TABLE);
+        String CREATE_USER_TABLE = "CREATE TABLE IF NOT EXISTS " + UserContract.User_Table.TABLE_NAME + "("
+                + UserContract.User_Table.KEY_ID + ")";
+        db.execSQL(CREATE_USER_TABLE);
+
         Log.d(TAG, "Database tables created");
     }
 
