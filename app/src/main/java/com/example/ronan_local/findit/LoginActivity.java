@@ -129,12 +129,8 @@ public class LoginActivity extends Activity {
                         String created_at = user.getString("created_at");
 
                         ContentValues values = new ContentValues();
-                        values.put(FriendsContract.Friends_Table.KEY_ID, 1);
-                        values.put(FriendsContract.Friends_Table.KEY_NAME, "Tim");
-                        getContentResolver().insert(FriendsContract.Friends_Table.CONTENT_URI,values);
-
-                        values = new ContentValues();
-                        values.put(UserContract.User_Table.KEY_ID, 1);
+                        values.put(UserContract.User_Table.KEY_ID, 2);
+                        getContentResolver().insert(UserContract.User_Table.CONTENT_URI,values);
 
                         // Launch main activity
                         Intent intent = new Intent(LoginActivity.this,

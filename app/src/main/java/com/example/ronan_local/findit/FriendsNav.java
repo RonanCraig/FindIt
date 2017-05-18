@@ -1,7 +1,11 @@
 package com.example.ronan_local.findit;
 
+import android.app.ProgressDialog;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -11,19 +15,31 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
+import helper.FriendsContract;
 import helper.SQLiteHandler;
 import helper.SessionManager;
+import helper.UserContract;
 
 import com.android.volley.Request.Method;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class FriendsNav extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-        private SQLiteHandler db;
+        private static final String TAG = FriendsNav.class.getSimpleName();
+        private ProgressDialog pDialog;
         private SessionManager session;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,8 +47,8 @@ public class FriendsNav extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        db = new SQLiteHandler(getApplicationContext());
-
+        pDialog = new ProgressDialog(this);
+        pDialog.setCancelable(false);
         // session manager
         session = new SessionManager(getApplicationContext());
 
@@ -48,6 +64,7 @@ public class FriendsNav extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        getFriends();
     }
 
     @Override
@@ -67,20 +84,6 @@ public class FriendsNav extends AppCompatActivity
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -107,11 +110,96 @@ public class FriendsNav extends AppCompatActivity
 
     private void logoutUser() {
         session.setLogin(false);
-
-        db.deleteUsers();
+        getContentResolver().delete(UserContract.User_Table.CONTENT_URI,null,null);
 
         // Launching the login activity
-        Intent intent = new Intent(FriendsNav.this, MainActivity.class);
+        Intent intent = new Intent(FriendsNav.this, LoginActivity.class);
+        startActivity(intent);
         finish();
+    }
+
+    private void getFriends() {
+        //getApplicationContext().deleteDatabase("c773androidMySQL");
+        // Tag used to cancel the request
+        String tag_string_req = "get_friends";
+
+        pDialog.setMessage("Loading Friends ...");
+        showDialog();
+
+        StringRequest strReq = new StringRequest(Method.POST,
+                AppConfig.URL_FRIENDS, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                Log.d(TAG, "Friends Response: " + response);
+                hideDialog();
+
+                try {
+                    JSONObject jObj = new JSONObject(response);
+                    boolean error = jObj.getBoolean("error");
+
+                    // Check for error node in json
+                    if (!error) {
+
+                        JSONArray friends = jObj.getJSONArray("friends");
+                        for(int i = 0; i < friends.length(); ++i)
+                        {
+
+                        }
+
+                        //String name = user.getString("username");
+                        //String email = user.getString("email");
+                        //String created_at = user.getString("created_at");
+
+                    } else {
+                        // Error in login. Get the error message
+                        String errorMsg = jObj.getString("error_msg");
+                        Toast.makeText(getApplicationContext(), errorMsg, Toast.LENGTH_LONG).show();
+                    }
+                } catch (JSONException e) {
+                    // JSON error
+                    e.printStackTrace();
+                    Toast.makeText(getApplicationContext(), "Json error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e(TAG, "Friends Error: " + error.getMessage());
+                Toast.makeText(getApplicationContext(),
+                        error.getMessage(), Toast.LENGTH_LONG).show();
+                hideDialog();
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting parameters to login url
+                Map<String, String> params = new HashMap<>();
+                String projections[] = {UserContract.User_Table.KEY_ID};
+                Cursor cursor = getContentResolver().query(UserContract.User_Table.CONTENT_URI, projections, null, null, null);
+                if (cursor.moveToFirst()) {
+                    String uID = Integer.toString(cursor.getInt(0));
+                    params.put("uID", uID);
+                }
+                return params;
+            }
+
+        };
+
+        // Adding request to request queue
+        AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
+    }
+
+    private void showDialog() {
+        if (!pDialog.isShowing())
+            pDialog.show();
+    }
+
+    private void hideDialog() {
+        if (pDialog.isShowing())
+            pDialog.dismiss();
     }
 }
