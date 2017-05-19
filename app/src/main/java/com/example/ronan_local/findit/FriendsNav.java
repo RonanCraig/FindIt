@@ -117,6 +117,9 @@ public class FriendsNav extends AppCompatActivity
             startActivity(intent);
             finish();
         } else if (id == R.id.nav_add_friend){
+            Intent intent = new Intent(FriendsNav.this, AddFriends.class);
+            startActivity(intent);
+            finish();
 
         } else if (id == R.id.nav_logout) {
             logoutUser();
@@ -219,6 +222,7 @@ public class FriendsNav extends AppCompatActivity
                     String uID = Integer.toString(cursor.getInt(0));
                     params.put("uID", uID);
                 }
+                cursor.close();
                 return params;
             }
 
