@@ -120,8 +120,6 @@ public class FriendsNav extends AppCompatActivity
 
         } else if (id == R.id.nav_logout) {
             logoutUser();
-        } else if (id == R.id.nav_share) {
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

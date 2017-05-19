@@ -12,6 +12,7 @@
     <string name="send_location">Send location</string>
     <string name="home">Home</string>
     <string name="add_friend">Add friend</string>
+    <string name="logout">Logout</string>
 
     <!-- Strings related to login -->
     <string name="prompt_name">Username</string>
