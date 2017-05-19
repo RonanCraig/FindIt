@@ -126,14 +126,4 @@
                 app:srcCompat="@drawable/showallbutton" />
 
         </android.support.constraint.ConstraintLayout>
-
-        <ImageButton
-            android:id="@+id/alertfriends_btn"
-            android:layout_width="190dp"
-            android:layout_height="60dp"
-            android:layout_gravity="center_horizontal"
-            android:background="@null"
-            android:contentDescription="@null"
-            android:scaleType="fitCenter"
-            app:srcCompat="@drawable/alertfriendsbutton" />
     </LinearLayout>
