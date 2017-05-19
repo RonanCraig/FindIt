@@ -9,6 +9,10 @@
     <string name="btn_logout">LOGOUT</string>
     <string name="title_activity_login">Sign in</string>
     <string name="title_activity_register">Sign up</string>
+    <string name="send_location">Send location</string>
+    <string name="home">Home</string>
+    <string name="add_friend">Add friend</string>
+    <string name="logout">Logout</string>
 
     <!-- Strings related to login -->
     <string name="prompt_name">Username</string>
