@@ -15,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -59,6 +60,16 @@ public class FriendsNav extends AppCompatActivity
         if (!session.isLoggedIn()) {
             logoutUser();
         }
+        ListView listView = (ListView)findViewById(R.id.list);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,long arg3)
+            {
+                view.setSelected(true);
+            }
+        });
+
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -80,6 +91,11 @@ public class FriendsNav extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
+    }
+
+    public void sendLocation(View view)
+    {
+
     }
 
     @Override
@@ -162,7 +178,7 @@ public class FriendsNav extends AppCompatActivity
                             {
 
                                 ListView listView = (ListView) findViewById(R.id.list);
-                                ArrayAdapter adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, arrayList);
+                                ArrayAdapter adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.list_custom, arrayList);
                                 listView.setAdapter(adapter);
                                 adapter.notifyDataSetChanged();
                             }
