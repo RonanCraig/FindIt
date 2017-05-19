@@ -54,8 +54,8 @@ public class FriendsNav extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        TextView email = (TextView)findViewById(R.id.Email);
-        TextView username = (TextView)findViewById(R.id.Username);
+        //TextView email = (TextView)findViewById(R.id.Email);
+        //TextView username = (TextView)findViewById(R.id.Username);
 
         String projections[] = {UserContract.User_Table.KEY_EMAIL};
         Cursor cursor = getContentResolver().query(UserContract.User_Table.CONTENT_URI, projections, null, null, null);
