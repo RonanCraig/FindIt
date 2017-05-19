@@ -1,34 +1,58 @@
 <html>
 	<script type="text/javascript">
-		function next(){
-			var source = document.getElementById("image").src
-			var imageNumber = source.substr(38, 1);
-			
-			if(imageNumber == 1){
-				document.getElementById("leftButton").style = "display: inline-block;"
+		var count = 1;
+		function next(){	
+			count = count+1;
+			if(count == 2){
+				document.getElementById("leftButton").style = "display: inline-block;";
+				document.getElementById("text").innerHTML = "Once selected the page will show the name of the location, a scrollable list of directions and a map showing your path on it";	
+				document.getElementById("image").src = "file:///android_asset/images/userguide2.png";				
 			}
-
-			imageNumber = parseInt(imageNumber) + 1;			
-			source = "file:///android_asset/images/userguide"+imageNumber+".png";
-			document.getElementById("image").src = source;
-			
-			if(imageNumber == 2){
-				document.getElementById("rightButton").style = "display:none;"
+			else if(count == 3){
+				document.getElementById("text").innerHTML = "If you click the next button, it will show the second closest, then third etc.";
+			}
+			else if(count == 4){
+				document.getElementById("text").innerHTML = "Pressing show all will display all possible locations currently visible on the map";
+			}
+			else if(count == 5){
+				document.getElementById("text").innerHTML = "If you click alert friends, a notification will be sent to your selected friends allowing them to see where you are going, to do this you must first login";
+			}
+			else if(count == 6){
+				document.getElementById("text").innerHTML = "When logged in you can see your friends list, which allows you to select friends and send them your location at any time";
+				document.getElementById("image").src = "file:///android_asset/images/userguide3.png";
+			}
+			else if(count == 7){
+				document.getElementById("text").innerHTML = "From this page you can also add new friends and see you friend requests";
+				document.getElementById("image").src = "file:///android_asset/images/userguide4.png";
+				document.getElementById("rightButton").style = "display:none;";
 			}
 			
 		}
 		
 		function back(){
-			var source = document.getElementById("image").src
-			var imageNumber = source.substr(38, 1);
-			if(imageNumber == 2){
-				document.getElementById("leftButton").style = "display: none;"
+			count = count-1;
+			if(count == 1){
+				document.getElementById("text").innerHTML = "You can select one of the four icons in the middle and will open a page navigating you to the nearest place of that type";
+				document.getElementById("leftButton").style = "display: none;";
+				document.getElementById("image").src = "file:///android_asset/images/userguide1.png";
 			}
-			imageNumber = parseInt(imageNumber) - 1;
-			source = "file:///android_asset/images/userguide"+imageNumber+".png";
-			document.getElementById("image").src = source;
-			if(imageNumber == 1){
-				document.getElementById("rightButton").style = "display: inline-block;"
+			else if(count == 2){
+				document.getElementById("text").innerHTML = "Once selected the page will show the name of the location, a scrollable list of directions and a map showing your path on it";	
+				document.getElementById("image").src = "file:///android_asset/images/userguide2.png";				
+			}
+			else if(count == 3){
+				document.getElementById("text").innerHTML = "If you click the next button, it will show the second closest, then third etc.";
+			}
+			else if(count == 4){
+				document.getElementById("text").innerHTML = "Pressing show all will display all possible locations currently visible on the map";
+			}
+			else if(count == 5){
+				document.getElementById("text").innerHTML = "If you click alert friends, a notification will be sent to your selected friends allowing them to see where you are going, to do this you must first login";
+			}
+			else if(count == 6){
+				document.getElementById("text").innerHTML = "When logged in you can see your friends list, which allows you to select friends and send them your location at any time";
+				document.getElementById("image").src = "file:///android_asset/images/userguide3.png";
+				document.getElementById("rightButton").style = "display:inline-block;";
 			}
 		}
 	</script>
