@@ -90,8 +90,10 @@
         android:onClick="buttonSettingsClicked"
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/iconsettings"
-        tools:layout_editor_absoluteY="16dp"
-        tools:layout_editor_absoluteX="16dp" />
+        android:layout_marginLeft="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="16dp" />
 
     <ImageView
         android:id="@+id/logo"

@@ -475,8 +475,8 @@ public class MapsActivity extends AppCompatActivity
             // Getting name
             String name = hmPlace.get("place_name");
 
-            //TextView textView = (TextView)findViewById(R.id.name);
-            //textView.setText(name);
+            TextView textView = (TextView)findViewById(R.id.name);
+            textView.setText(name);
 
             Log.d("Map", "place: " + name);
 
