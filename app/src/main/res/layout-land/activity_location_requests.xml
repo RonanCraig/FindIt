@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/backgroundland"
     tools:context="com.example.ronan_local.findit.LocationRequestsActivity">
     <FrameLayout
         android:layout_width="0dp"
@@ -23,12 +23,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
             <ListView
-                android:listSelector="@drawable/list_selector"
                 android:id="@+id/list3"
-                android:layout_width="368dp"
+                android:layout_width="match_parent"
                 android:layout_height="140dp"
                 android:background="@drawable/transparentbackground"
+                android:listSelector="@drawable/list_selector"
                 android:scrollbars="none|vertical"
                 android:textColor="#000000"
                 tools:layout_editor_absoluteX="8dp"
@@ -38,21 +39,22 @@
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50sp"
+                android:layout_marginTop="25sp"
                 android:text="Show"
                 android:textStyle="bold"
                 android:background="@color/transparentwhite"
                 android:radius="10dp"/>
+
             <Button
                 android:id="@+id/btnDeclineLocationRequest"
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50sp"
-                android:text="Decline"
-                android:textStyle="bold"
+                android:layout_marginTop="25sp"
                 android:background="@color/transparentwhite"
-                android:radius="10dp"/>
+                android:radius="10dp"
+                android:text="Decline"
+                android:textStyle="bold" />
         </LinearLayout>
     </FrameLayout>
 
