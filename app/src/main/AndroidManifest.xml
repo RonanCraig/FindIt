@@ -71,7 +71,8 @@
             android:authorities="com.example.ronan_local.findit"
             android:enabled="true" />
 
-        <activity android:name=".FriendRequestActivity"></activity>
+        <activity android:name=".FriendRequestActivity" />
+        <activity android:name=".LocationRequestsActivity"></activity>
     </application>
 
 </manifest>

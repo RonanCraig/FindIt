@@ -15,6 +15,10 @@
             android:icon="@drawable/ic_face"
             android:title="Friend Requests" />
         <item
+            android:id="@+id/nav_location_requests"
+            android:icon="@drawable/ic_face"
+            android:title="Recieved Locations" />
+        <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/ic_logout"
             android:title="@string/logout" />

@@ -43,9 +43,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="25sp"
+            android:text="Send Location"
             android:background="@color/transparentwhite"
-            android:onClick="sendLocation"
-            android:text="@string/send_location"
             android:textStyle="bold" />
     </LinearLayout>
 
