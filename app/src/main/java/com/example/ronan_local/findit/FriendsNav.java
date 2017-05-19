@@ -221,6 +221,7 @@ public class FriendsNav extends AppCompatActivity
                     String uID = Integer.toString(cursor.getInt(0));
                     params.put("uID", uID);
                 }
+                cursor.close();
                 return params;
             }
 
