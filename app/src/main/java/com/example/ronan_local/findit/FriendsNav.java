@@ -15,6 +15,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import helper.FriendsContract;
@@ -31,6 +34,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -55,6 +59,7 @@ public class FriendsNav extends AppCompatActivity
         if (!session.isLoggedIn()) {
             logoutUser();
         }
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -139,13 +144,27 @@ public class FriendsNav extends AppCompatActivity
                     boolean error = jObj.getBoolean("error");
 
                     // Check for error node in json
-                    if (!error) {
+                    if (!error)
+                    {
 
                         JSONArray friends = jObj.getJSONArray("friends");
+                        final ArrayList arrayList = new ArrayList();
                         for(int i = 0; i < friends.length(); ++i)
                         {
-
+                            arrayList.add( ( (JSONObject)friends.get(i) ).get("username") );
                         }
+                        runOnUiThread(new Runnable()
+                        {
+                            @Override
+                            public void run()
+                            {
+
+                                ListView listView = (ListView) findViewById(R.id.list);
+                                ArrayAdapter adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, arrayList);
+                                listView.setAdapter(adapter);
+                                adapter.notifyDataSetChanged();
+                            }
+                        });
 
                         //String name = user.getString("username");
                         //String email = user.getString("email");
