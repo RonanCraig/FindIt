@@ -11,6 +11,10 @@
             android:icon="@drawable/ic_face"
             android:title="Add Friend" />
         <item
+            android:id="@+id/nav_friend_requests"
+            android:icon="@drawable/ic_face"
+            android:title="Friend Requests" />
+        <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/ic_logout"
             android:title="Logout" />

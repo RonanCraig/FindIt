@@ -44,11 +44,10 @@ public class AddFriends extends AppCompatActivity {
         sendReq.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 String username = inputUsername.getText().toString().trim();
-                if(!username.isEmpty()){
-                    sendRequest(username);
-                    Toast.makeText(getApplicationContext(), "Request sent successfully!", Toast.LENGTH_LONG).show();
-                } else {
+                if(username.isEmpty()){
                     Toast.makeText(getApplicationContext(), "Please enter a username to search!", Toast.LENGTH_LONG).show();
+                } else {
+                    sendRequest(username);
                 }
             }
         });
@@ -59,6 +58,9 @@ public class AddFriends extends AppCompatActivity {
         String tag_string_req = "send_request";
 
         inputUsername.setText("");
+
+        pDialog.setMessage("Sending request ...");
+        showDialog();
 
         StringRequest strReq = new StringRequest(Method.POST,
                 AppConfig.URL_REQUESTS, new Response.Listener<String>() {

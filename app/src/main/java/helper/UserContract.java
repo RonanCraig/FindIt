@@ -22,6 +22,7 @@ public class UserContract {
         //table and column names
         public static final String TABLE_NAME = "USER_TABLE";
         public static final String KEY_ID = "uID";
+        public static final String KEY_EMAIL = "email";
 
         //public static final String COLUMN_MOVIE = "POPULAR_MOVIE";
 
