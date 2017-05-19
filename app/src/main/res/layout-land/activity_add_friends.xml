@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/backgroundland"
     tools:context="com.example.ronan_local.findit.AddFriends">
 
     <android.support.design.widget.AppBarLayout
@@ -40,8 +40,7 @@
         android:layout_marginTop="150sp"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:text="@string/send_request"
-        android:background="@color/transparentwhite"/>
+        android:text="@string/send_request" />
 
 
 </android.support.design.widget.CoordinatorLayout>
