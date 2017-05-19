@@ -38,5 +38,5 @@ public class AddFriends extends AppCompatActivity {
         inputUsername.setText("");
 
     }
-
+//hi
 }
