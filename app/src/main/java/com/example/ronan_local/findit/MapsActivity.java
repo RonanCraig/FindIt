@@ -149,9 +149,19 @@ public class MapsActivity extends AppCompatActivity
         LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
         mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
                 mGoogleApiClient);
+        if(getIntent().getStringExtra("typesToSearch").equals("person"))
+        {
+            Log.d("TEEEEEEEEEEEEEEEEEEST", "TEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEST");
+            LatLng one = new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude());
+            LatLng two = new LatLng(getIntent().getDoubleExtra("lat", 0), getIntent().getDoubleExtra("long", 0));
+            pathDrawer.createPath(one, two, "mode=walking");
+        }
+        else
+        {
+            LocationFinder locationFinder = new LocationFinder();
+            locationFinder.findLocations();
+        }
 
-        LocationFinder locationFinder = new LocationFinder();
-        locationFinder.findLocations();
     }
 
     @Override

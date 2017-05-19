@@ -19,9 +19,9 @@
     <application
         android:name=".AppController"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/appicon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/appicon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
@@ -71,7 +71,10 @@
             android:authorities="com.example.ronan_local.findit"
             android:enabled="true" />
 
-        <activity android:name=".FriendRequestActivity" />
+        <activity android:name=".FriendRequestActivity"></activity>
+        <activity
+            android:name=".UserGuide"
+            android:screenOrientation="portrait"></activity>
         <activity android:name=".LocationRequestsActivity"></activity>
     </application>
 

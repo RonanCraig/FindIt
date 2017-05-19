@@ -1,6 +1,7 @@
 package com.example.ronan_local.findit;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.google.android.gms.maps.model.LatLng;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -23,6 +25,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import helper.UserContract;
@@ -50,7 +53,10 @@ public class LocationRequestsActivity extends AppCompatActivity {
                 acceptRequest.setOnClickListener(new View.OnClickListener()
                 {
                     public void onClick(View view) {
-                        String text = listView.getItemAtPosition(position).toString();
+                        Data  item = (Data) listView.getItemAtPosition(position);
+                        LatLng l = item.latlng;
+                        String text = item.name;
+                        showLocation(l);
                         deleteLocationRequest(text, "true");
                     }
                 });
@@ -65,6 +71,25 @@ public class LocationRequestsActivity extends AppCompatActivity {
             }
         });
         showLocationRequests();
+    }
+
+    private void showLocation(LatLng latLng)
+    {
+        Intent intent = new Intent(this, MapsActivity.class);
+        intent.putExtra("typesToSearch", "person");
+        intent.putExtra("lat", latLng.latitude);
+        intent.putExtra("long", latLng.longitude);
+        startActivity(intent);
+    }
+
+    class Data {
+        String name;
+        LatLng latlng;
+
+        @Override
+        public String toString() {
+            return name;
+        }
     }
 
     private void deleteLocationRequest(final String Text, final String accept)
@@ -158,20 +183,24 @@ public class LocationRequestsActivity extends AppCompatActivity {
                     if (!error) {
 
                         JSONArray requests = jObj.getJSONArray("location_requests");
-                        final ArrayList arrayList = new ArrayList();
+                        final List<Data> output = new ArrayList<Data>();
                         for(int i = 0; i < requests.length(); ++i)
                         {
-                            arrayList.add( ( (JSONObject)requests.get(i) ).get("username") );
-                            //arrayList.add( ( (JSONObject)requests.get(i) ).get("username") );
+                            Data d = new Data();
+                            float lat = Float.parseFloat(( String)( (JSONObject)requests.get(i) ).get("Lat") );
+                            float lon = Float.parseFloat( (String)( (JSONObject)requests.get(i) ).get("Long") );
+                            LatLng l = new LatLng(lat, lon);
+                            d.latlng = l;
+                            d.name = (String)( (JSONObject)requests.get(i) ).get("username");
+                            output.add( d );
                         }
                         runOnUiThread(new Runnable()
                         {
                             @Override
                             public void run()
                             {
-
                                 ListView listView = (ListView) findViewById(R.id.list3);
-                                ArrayAdapter adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.list_custom, arrayList);
+                                ArrayAdapter<Data> adapter = new ArrayAdapter<Data>(getApplicationContext(), R.layout.list_custom, output);
                                 listView.setAdapter(adapter);
                                 adapter.notifyDataSetChanged();
                             }
