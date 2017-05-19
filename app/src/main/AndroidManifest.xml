@@ -60,6 +60,10 @@
         <activity
             android:name=".FriendsNav"
             android:label="@string/title_activity_friends_nav"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".AddFriends"
+            android:label="@string/title_activity_add_friends"
             android:theme="@style/AppTheme"></activity>
         <provider
             android:name="helper.OurContentProvider"
