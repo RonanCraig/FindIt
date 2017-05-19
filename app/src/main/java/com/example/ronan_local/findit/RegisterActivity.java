@@ -52,7 +52,7 @@ public class RegisterActivity extends AppCompatActivity {
         if (session.isLoggedIn()) {
             // User is already logged in. Take him to main activity
             Intent intent = new Intent(RegisterActivity.this,
-                    MainActivity.class);
+                    FriendsNav.class);
             startActivity(intent);
             finish();
         }

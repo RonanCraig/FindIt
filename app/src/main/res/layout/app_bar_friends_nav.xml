@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.ronan_local.findit.FriendsActivity">
+    tools:context="com.example.ronan_local.findit.FriendsNav">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -20,26 +20,14 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_friends" />
-
-    <Button
-        android:id="@+id/btnLogout"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:background="@color/btn_logut_bg"
-        android:text="@string/btn_logout"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="15sp" />
+    <include layout="@layout/content_friends_nav" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
-        android:layout_height="64dp"
-        android:layout_gravity="start"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        app:backgroundTint="@color/home"
-        app:srcCompat="@drawable/ic_home_black_24dp" />
+        app:srcCompat="@android:drawable/ic_dialog_email" />
 
 </android.support.design.widget.CoordinatorLayout>

@@ -75,7 +75,8 @@ public class OurContentProvider extends ContentProvider {
         int match_code = myUriMatcher.match(uri);
         Uri retUri = null;
 
-        switch(match_code){
+        switch(match_code)
+        {
             case FRIEND:{
                 SQLiteDatabase db = myDBHelper.getWritableDatabase();
                 long _id = db.insert(FriendsContract.Friends_Table.TABLE_NAME,null,values);
@@ -132,6 +133,21 @@ public class OurContentProvider extends ContentProvider {
                         null // sort order
                 );
                 Log.i(LOG_TAG, "querying for FRIEND");
+                Log.i(LOG_TAG, myCursor.getCount() + "");
+                break;
+            }
+            case USER: {
+                SQLiteDatabase db = myDBHelper.getWritableDatabase();
+                myCursor = db.query(
+                        UserContract.User_Table.TABLE_NAME, // Table to Query
+                        projection,//Columns
+                        null, // Columns for the "where" clause
+                        null, // Values for the "where" clause
+                        null, // columns to group by
+                        null, // columns to filter by row groups
+                        null // sort order
+                );
+                Log.i(LOG_TAG, "querying for USER");
                 Log.i(LOG_TAG, myCursor.getCount() + "");
                 break;
             }

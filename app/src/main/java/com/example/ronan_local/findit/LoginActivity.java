@@ -55,7 +55,7 @@ public class LoginActivity extends Activity {
         // Check if user is already logged in or not
         if (session.isLoggedIn()) {
             // User is already logged in. Take him to main activity
-            Intent intent = new Intent(LoginActivity.this, FriendsActivity.class);
+            Intent intent = new Intent(LoginActivity.this, FriendsNav.class);
             startActivity(intent);
             finish();
         }
@@ -129,16 +129,12 @@ public class LoginActivity extends Activity {
                         String created_at = user.getString("created_at");
 
                         ContentValues values = new ContentValues();
-                        values.put(FriendsContract.Friends_Table.KEY_ID, 1);
-                        values.put(FriendsContract.Friends_Table.KEY_NAME, "Tim");
-                        getContentResolver().insert(FriendsContract.Friends_Table.CONTENT_URI,values);
-
-                        values = new ContentValues();
-                        values.put(UserContract.User_Table.KEY_ID, 1);
+                        values.put(UserContract.User_Table.KEY_ID, 2);
+                        getContentResolver().insert(UserContract.User_Table.CONTENT_URI,values);
 
                         // Launch main activity
                         Intent intent = new Intent(LoginActivity.this,
-                                FriendsActivity.class);
+                                FriendsNav.class);
                         startActivity(intent);
                         finish();
                     } else {
@@ -167,7 +163,7 @@ public class LoginActivity extends Activity {
             @Override
             protected Map<String, String> getParams() {
                 // Posting parameters to login url
-                Map<String, String> params = new HashMap<String, String>();
+                Map<String, String> params = new HashMap<>();
                 params.put("email", email);
                 params.put("password", password);
                 return params;

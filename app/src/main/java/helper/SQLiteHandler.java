@@ -36,9 +36,6 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         myDB = db;
-        String CREATE_FRIEND_TABLE = "CREATE TABLE IF NOT EXISTS " + FriendsContract.Friends_Table.TABLE_NAME + "("
-                + FriendsContract.Friends_Table.KEY_ID + " INTEGER PRIMARY KEY," + FriendsContract.Friends_Table.KEY_NAME + " TEXT" + ")";
-        db.execSQL(CREATE_FRIEND_TABLE);
 
         String CREATE_USER_TABLE = "CREATE TABLE IF NOT EXISTS " + UserContract.User_Table.TABLE_NAME + "("
                 + UserContract.User_Table.KEY_ID + ")";
