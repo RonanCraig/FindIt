@@ -38,7 +38,11 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         myDB = db;
 
         String CREATE_USER_TABLE = "CREATE TABLE IF NOT EXISTS " + UserContract.User_Table.TABLE_NAME + "("
-                + UserContract.User_Table.KEY_ID + ")";
+                + UserContract.User_Table.KEY_ID
+                + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + UserContract.User_Table.KEY_EMAIL
+                + " TEXT NOT NULL );";
+
         db.execSQL(CREATE_USER_TABLE);
 
         Log.d(TAG, "Database tables created");

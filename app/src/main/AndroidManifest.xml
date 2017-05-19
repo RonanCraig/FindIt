@@ -64,16 +64,14 @@
         <activity
             android:name=".AddFriends"
             android:label="@string/title_activity_add_friends"
-            android:theme="@style/AppTheme"></activity>
-        <activity
-            android:name=".UserGuide"
-            android:label="@string/title_activity_user_guide"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+
         <provider
             android:name="helper.OurContentProvider"
             android:authorities="com.example.ronan_local.findit"
-            android:enabled="true"
-            ></provider>
+            android:enabled="true" />
+
+        <activity android:name=".FriendRequestActivity"></activity>
     </application>
 
 </manifest>

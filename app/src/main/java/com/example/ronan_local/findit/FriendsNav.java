@@ -18,7 +18,9 @@ import android.view.MenuItem;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import helper.FriendsContract;
@@ -52,6 +54,18 @@ public class FriendsNav extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        TextView email = (TextView)findViewById(R.id.Email);
+        TextView username = (TextView)findViewById(R.id.Username);
+
+        String projections[] = {UserContract.User_Table.KEY_EMAIL};
+        Cursor cursor = getContentResolver().query(UserContract.User_Table.CONTENT_URI, projections, null, null, null);
+        if (cursor.moveToFirst()) {
+            //email.setText(cursor.getString(0));
+        }
+        cursor.close();
+
+
+
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
         // session manager
@@ -60,16 +74,22 @@ public class FriendsNav extends AppCompatActivity
         if (!session.isLoggedIn()) {
             logoutUser();
         }
-        ListView listView = (ListView)findViewById(R.id.list);
+        final ListView listView = (ListView)findViewById(R.id.list);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position,long arg3)
+            public void onItemClick(AdapterView<?> parent, View view, final int position,long arg3)
             {
                 view.setSelected(true);
+                Button btnSendLocation = (Button)findViewById(R.id.btnSendLocation);
+                btnSendLocation.setOnClickListener(new View.OnClickListener()
+                {
+                    public void onClick(View view) {
+                        String username = listView.getItemAtPosition(position).toString();
+                    }
+                });
             }
         });
-
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -82,6 +102,12 @@ public class FriendsNav extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         getFriends();
     }
+
+    private void sendLocationRequest(String username)
+    {
+
+    }
+
 
     @Override
     public void onBackPressed() {
@@ -117,8 +143,14 @@ public class FriendsNav extends AppCompatActivity
             startActivity(intent);
             finish();
         } else if (id == R.id.nav_add_friend){
-
-        } else if (id == R.id.nav_logout) {
+            Intent intent = new Intent(FriendsNav.this, AddFriends.class);
+            startActivity(intent);
+        }
+        else if (id == R.id.nav_friend_requests){
+            Intent intent = new Intent(FriendsNav.this, FriendRequestActivity.class);
+            startActivity(intent);
+        }
+        else if (id == R.id.nav_logout) {
             logoutUser();
         }
 
@@ -180,9 +212,6 @@ public class FriendsNav extends AppCompatActivity
                             }
                         });
 
-                        //String name = user.getString("username");
-                        //String email = user.getString("email");
-                        //String created_at = user.getString("created_at");
 
                     } else {
                         // Error in login. Get the error message
@@ -217,6 +246,7 @@ public class FriendsNav extends AppCompatActivity
                     String uID = Integer.toString(cursor.getInt(0));
                     params.put("uID", uID);
                 }
+                cursor.close();
                 return params;
             }
 

@@ -124,12 +124,12 @@ public class LoginActivity extends Activity {
                         // Now store the user in SQLite
 
                         JSONObject user = jObj.getJSONObject("users");
-                        String name = user.getString("username");
+                        String uID = user.getString("uID");
                         String email = user.getString("email");
-                        String created_at = user.getString("created_at");
 
                         ContentValues values = new ContentValues();
-                        values.put(UserContract.User_Table.KEY_ID, 2);
+                        values.put(UserContract.User_Table.KEY_ID, uID);
+                        values.put(UserContract.User_Table.KEY_EMAIL, email);
                         getContentResolver().insert(UserContract.User_Table.CONTENT_URI,values);
 
                         // Launch main activity
