@@ -24,23 +24,13 @@ public class AddFriends extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_friends);
+        //setContentView(R.layout.activity_add_friends);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        inputUsername = (EditText) findViewById(R.id.search_username);
-        Button sendReq = (Button) findViewById(R.id.send_request);
+        //inputUsername = (EditText) findViewById(R.id.search_username);
+        //Button sendReq = (Button) findViewById(R.id.send_request);
 
-        sendReq.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                String username = inputUsername.getText().toString().trim();
-                if(!username.isEmpty()){
-                    sendRequest(username);
-                    Toast.makeText(getApplicationContext(), "Request sent successfully!", Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(getApplicationContext(), "Please enter a username to search!", Toast.LENGTH_LONG).show();
-                }
-            }
-        });
+
 
     }
 

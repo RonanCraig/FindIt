@@ -25,13 +25,26 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
     <ListView
+        android:listSelector="@drawable/list_selector"
         android:id="@+id/list"
         android:layout_width="368dp"
         android:layout_height="140dp"
         android:background="@drawable/transparentbackground"
         android:scrollbars="none|vertical"
+        android:textColor="#000000"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="0dp" />
+        <Button
+            android:id="@+id/btnSendLocation"
+            style="?android:textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50sp"
+            android:text="Send Location"
+            android:textStyle="bold"
+            android:onClick="sendLocation"
+            android:background="@color/transparentwhite"
+            android:radius="10dp"/>
     </LinearLayout>
     </FrameLayout>
 
