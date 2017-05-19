@@ -97,5 +97,11 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         }
 
+
+    }
+    public void buttonUserGuide(View view)
+    {
+        Intent intent = new Intent(this, UserGuide.class);
+        startActivity(intent);
     }
 }
