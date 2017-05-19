@@ -17,4 +17,10 @@ public class SettingsActivity extends AppCompatActivity {
     {
         finish();
     }
+
+    public void buttonUserGuide(View view)
+    {
+        Intent intent = new Intent(this, UserGuide.class);
+        startActivity(intent);
+    }
 }

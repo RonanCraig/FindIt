@@ -65,6 +65,10 @@
             android:name=".AddFriends"
             android:label="@string/title_activity_add_friends"
             android:theme="@style/AppTheme"></activity>
+        <activity
+            android:name=".UserGuide"
+            android:label="@string/title_activity_user_guide"
+            android:theme="@style/AppTheme"></activity>
         <provider
             android:name="helper.OurContentProvider"
             android:authorities="com.example.ronan_local.findit"

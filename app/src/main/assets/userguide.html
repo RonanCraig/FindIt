@@ -1,0 +1,134 @@
+<html>
+	<script type="text/javascript">
+		function next(){
+			var source = document.getElementById("image").src
+			var imageNumber = source.substr(38, 1);
+			
+			if(imageNumber == 1){
+				document.getElementById("leftButton").style = "display: inline-block;"
+			}
+
+			imageNumber = parseInt(imageNumber) + 1;			
+			source = "file:///android_asset/images/userguide"+imageNumber+".png";
+			document.getElementById("image").src = source;
+			
+			if(imageNumber == 2){
+				document.getElementById("rightButton").style = "display:none;"
+			}
+			
+		}
+		
+		function back(){
+			var source = document.getElementById("image").src
+			var imageNumber = source.substr(38, 1);
+			if(imageNumber == 2){
+				document.getElementById("leftButton").style = "display: none;"
+			}
+			imageNumber = parseInt(imageNumber) - 1;
+			source = "file:///android_asset/images/userguide"+imageNumber+".png";
+			document.getElementById("image").src = source;
+			if(imageNumber == 1){
+				document.getElementById("rightButton").style = "display: inline-block;"
+			}
+		}
+	</script>
+	<style>
+	body{
+		 margin:0;
+		 padding:0;
+		 background-color: 722118;
+	}
+	
+	#imageArea{
+		width: 100%;
+		height: 80%;
+	}
+	
+	#textArea{
+		width: 98%;
+		height: 16%;
+		margin: auto;
+		margin-top: 1%;
+		text-align: center;
+		font-size: 1em;
+	}
+	
+	#leftArrow{
+		text-align: center;
+		width: 9%;
+		height: 100%;
+		float: left;
+	}
+	
+	#imageDiv{
+		text-align: center;
+		width: 80%;
+		height: 100%;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	
+	#rightArrow{
+		text-align: center;
+		width: 9%;
+		height: 100%;
+		float: right;
+	}
+	
+	#image{
+		width: 100%;
+		height: 100%;
+	}
+	
+	#leftButton{
+		display: none;
+		width: 100%;
+		height: 100%;
+		background-color: Transparent;
+        background-repeat:no-repeat;
+        border: none;
+	}
+	
+	#rightButton{
+		width: 100%;
+		height: 100%;
+		background-color: Transparent;
+        background-repeat:no-repeat;
+        border: none;
+	}
+	
+	.arrow{
+		width: 100%;
+	}
+	
+	#text{
+		width: 95%;
+		height: 100%;
+		background-color: white;
+		margin: auto;
+		font-size: 0.9em;
+	}
+	</style>
+	<body>
+		<div id="imageArea">
+			<div id="leftArrow">
+				<button type="button" id="leftButton" onclick="back()">
+					<img src="file:///android_asset/images/leftarrow.png" class="arrow">
+				</button>				
+			</div>
+			<div id="rightArrow">
+				<button type="button" id="rightButton" onclick="next()">
+					<img src="file:///android_asset/images/rightarrow.png" class="arrow">
+				</button>
+			</div>
+			<div id="imageDiv">
+				<img src="file:///android_asset/images/userguide1.png" id="image">
+			</div>
+		</div>
+		<div id="textArea">
+			<p id="text">
+				You can select one of the four icons in the middle and will open a page navigating you to the nearest place of that type
+			</p>
+		</div>
+	</body>
+</html>
